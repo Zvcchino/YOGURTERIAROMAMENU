@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<title>Menu Yogurteria</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    body {
+  --dot-bg: rgb(255, 255, 255);
+  --dot-color: #ef0073;
+  --dot-size: 2px;
+  --dot-space: 22px;
+	background:
+		linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+		var(--dot-color);
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 10px;
+    padding: 0px;
+
+}
+
+.grid-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.grid-item img {
+    width: 100%; /* Assume the images are responsive and cover the width of the grid item */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #ccc; /* A subtle line below the image */
+}
+
+.menu-item-title {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.menu-item-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.menu-item-price {
+    font-size: 16px;
+    color: #ef0073;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+    .navbar {
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 2px solid #ef0073;
+        padding-bottom: -10px;
+        background: white;
+    }
+    .navbar div {
+        text-align: center;
+        justify-content: center;
+        width: 25%;
+        transition: all 0.4s;
+        font-weight: 600;
+        
+
+    }
+    .navbar div i {
+    font-size: 30px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color:#ef0073
+    }
+    .navbar div p {
+    margin-top: -3px;
+    border-radius: 4px;
+    color:#ef0073
+    
+    }
+    .navbar div:hover {
+        background-color: #ef0073;
+        cursor: pointer;
+        color:#fff;
+    }
+    .navbar div:hover i {
+    color:#fff;
+    }
+    .navbar div:hover p {
+    color:#fff;
+    }
+
+
+    .content {
+        display: none;
+        padding: 20px;
+        animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .active {
+        display: block;
+    }
+    .menu-title {
+        text-align: left;
+        font-size: 30px;
+        padding: 5px;
+        font-weight: 600;
+        color: #333;
+    }
+    .x-container h1{
+        font-size: 26px;
+        padding: 0;
+        margin: 0;
+        color: #333;
+    }
+    .x-container {
+    width: 94%;
+    max-width: 700px;
+    background-color: #ffffff;
+    margin-top: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+}
+
+
+    .x-title {
+        text-align: left;
+        font-size: 30px;
+        padding: 10px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+
+    .x-list {
+    list-style: none;
+    padding: 0;
+    font-weight: 600;
+    margin: 10px 0;
+}
+.x-list li span:nth-child(2) {
+    color:#ef0073;
+}
+.x-list li span:nth-child(2) {
+    color:#ef0073;
+    font-size: 20px;
+}
+
+
+.x-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+span img{
+    max-width: 100%;
+    height: auto;
+}
+.x-list li span {
+    font-size: 16px;
+}
+
+.x-list li span {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.x-list li span img {
+    margin: auto;
+}
+
+
+.hidden {
+    display: none;
+    padding: 0;
+    font-weight: 300;
+}
+
+.expandable:hover {
+    cursor: pointer;
+}
+.expandable{
+    display: block !important;
+    font-weight: 300;
+}
+
+.x-list li:last-child {
+    border-bottom: none;
+}
+.pinkhr{
+    width: 100%;
+    height: 2px;
+    background: var(--dot-color);
+}
+
+        .x-list > li > ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+/* Colora ogni quarta riga a partire dalla seconda riga (2, 6, 10, ...) */
+tbody tr:nth-child(4n+2) {
+    background: #ff3b9a; /* Ad esempio, un rosa */
+    color: #000;
+}
+
+/* Colora ogni quarta riga a partire dalla quarta riga (4, 8, 12, ...) */
+tbody tr:nth-child(4n) {
+    background: #f2f200; /* Ad esempio, un blu */
+    color: #000;
+}
+#width1002{
+    width: 100%;
+    font-weight: 600;
+}
+#width100{
+    width: 100%;
+}
+
+#width100 tr td:first-child{
+    font-weight: 600;
+    font-size: 20px;
+}
+tbody tr:nth-child(odd) {
+background: #f5f5f5;
+}
+table{
+    width: 80%;
+}
+#tp{
+    max-width: 150px;
+}
+#tp2{
+    max-width: 100px;
+}
+@keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+.active {
+            display: block;
+        }
+.x-list li.active > ul {
+            display: block;
+        }
+        .x-list li > ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            display: none;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .legend, .product-list {
+            margin-bottom: 30px;
+        }
+
+        .legend h2, .product-list h2 {
+            font-size: 24px;
+            color: #ef0073;
+            margin-bottom: 15px;
+        }
+
+        .legend-item, .product-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .legend-item:last-child, .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .legend-item img, .product-item img {
+            width: 50px;
+            margin-right: 20px;
+        }
+
+        .legend-item span, .product-item span {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .legend-item b, .product-item b {
+            color: #ef0073;
+        }
+
+        .product-item .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-item .product-info .product-title {
+            font-size: 20px;
+            color: #ef0073;
+            margin-bottom: 5px;
+        }
+
+        .product-item .product-info .product-description {
+            font-size: 14px;
+            color: #666;
+        }
+        .icons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div onclick="document.getElementById('ITALIANO').style.display='block'; 
+                 document.getElementById('TORTE').style.display='none';
+                 document.getElementById('ALLERGENI').style.display='none';
+                 document.getElementById('INGLESE').style.display='none';"><i class='bx bx-food-menu' ></i><p>ITALIANO</p></div>
+    <div onclick="document.getElementById('ITALIANO').style.display='none'; 
+                 document.getElementById('TORTE').style.display='block';
+                 document.getElementById('ALLERGENI').style.display='none';
+                 document.getElementById('INGLESE').style.display='none';"><i class='bx bx-cake'></i><p>TORTE</p></div>
+    <div onclick="document.getElementById('ITALIANO').style.display='none'; 
+                 document.getElementById('TORTE').style.display='none';
+                 document.getElementById('ALLERGENI').style.display='block';
+                 document.getElementById('INGLESE').style.display='none';"><i class='bx bx-donate-heart'></i><p>ALLERGENI</p></div>
+    <div onclick="document.getElementById('ITALIANO').style.display='none'; 
+                 document.getElementById('TORTE').style.display='none';
+                 document.getElementById('ALLERGENI').style.display='none';
+                 document.getElementById('INGLESE').style.display='block';"><i class='bx bxs-food-menu' ></i><p>INGLESE</p></div>
+</div>
+
+<div id="ITALIANO" class="content active">
+    <div class="menu-title">
+        MENU'ITALIANO
+    </div>
+    <div class="grid-container">
+        <div class="x-container">
+                <h1>Frozen Yogurt <div class="pinkhr"></h1>
+                <p>Frozen Yogurt realizzato con Yogurt fresco della Mila Sudtirol senza aggiunta di latte o panna, ottimo per intolleranti al lattosio.</p>
+            <ul class="x-list">
+                <li><span>YO SOLO</span><span>€2,00</span></li>
+                <li><span>YO PICCOLO</span><span>€4,00</span></li>
+                <li><span>YO MEDIO</span><span>€5,00</span></li>
+                <li><span>YO GRANDE</span><span>€6,00</span></li>
+                <li><span>YO PARADISE</span><span>€11,50</span></li>
+                <li><span>YO INFINITY</span><span>€21,50</span></li>
+            </ul>
+            <footer>
+                <p>Topping aggiuntivi in più rispetto a quelli già compresi a partire da + €0,50.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>Guarnizioni<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <span>FRUTTA FRESCA</span>
+                    
+                </li>
+                <li>
+                    <span>CREME
+                        <img src="Foto/Menu/Creme1.png" />
+
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Arachidi salate</td>
+                            <td>Bueno</td>
+                            <td>Bueno Crisp</td>
+                        </tr>
+                        <tr>
+                            <td>Cereali</td>
+                            <td>Cioccolato bianco</td>
+                            <td>Cioccolato fondente</td>
+                        </tr>
+                        <tr>
+                            <td>Delizia al limone</td>
+                            <td>Mou</td>
+                            <td>Nocciola</td>
+                        </tr>
+                        <tr>
+                            <td>Pan di stelle</td>
+                            <td>Pistacchio</td>
+                            <td>Profitterol</td>
+                        </tr>
+                        <tr>
+                            <td>Raffaello</td>
+                            <td>Rocher</td>
+                            <td>Stracciatella bianca</td>
+                        </tr>
+                        <tr>
+                            <td>Stracciatella fondente</td>
+                            <td>Zabaione</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <span>SALSE
+                        <img src="Foto/Menu/Creme2.png" />
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Albicocca</td>
+                            <td>Amarena</td>
+                            <td>Ananas</td>
+                        </tr>
+                        <tr>
+                            <td>Anguria</td>
+                            <td>Banana</td>
+                            <td>Caffè</td>
+                        </tr>
+                        <tr>
+                            <td>Caramello</td>
+                            <td>Fichi caramelati</td>
+                            <td>Fragola</td>
+                        </tr>
+                        <tr>
+                            <td>Frutti di bosco</td>
+                            <td>Lampone</td>
+                            <td>Lime</td>
+                        </tr>
+                        <tr>
+                            <td>Liquirizia</td>
+                            <td>Mango</td>
+                            <td>Maracuja</td>
+                        </tr>
+                        <tr>
+                            <td>Melograno</td>
+                            <td>Melone</td>
+                            <td>Mirtillo</td>
+                        </tr>
+                        <tr>
+                            <td>Pesca</td>
+                            <td>Puffo</td>
+                            <td>Zenzero</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>GRANELLE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <span>
+                        <img src="Foto/Menu/Granelle1.png" />
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Amaretto</td>
+                            <td>Arachidi pralinate</td>
+                            <td>Brezel</td>
+                        </tr>
+                        <tr>
+                            <td>Cereali al cioccolato fondente</td>
+                            <td>Cereali al cioccolato al latte</td>
+                            <td>Cereal cookie</td>
+                        </tr>
+                        <tr>
+                            <td>Cereali ai tre cioccolati</td>
+                            <td>Cheerios alla frutta</td>
+                            <td>Cereali al cioccolato bianco</td>
+                        </tr>
+                        <tr>
+                            <td>Controversi</td>
+                            <td>Codette</td>
+                            <td>Cheerios al miele</td>
+                        </tr>
+                        <tr>
+                            <td>Diavolini</td>
+                            <td>Farina di cocco</td>
+                            <td>Corn flakes</td>
+                        </tr>
+                        <tr>
+                            <td>Mandorle</td>
+                            <td>Mandorle pralinate</td>
+                            <td>Gocce di cioccolato</td>
+                        </tr>
+                        <tr>
+                            <td>Meringhe</td>
+                            <td>Minilenti al cioccolato</td>
+                            <td>Marshmallow</td>
+                        </tr>
+                        <tr>
+                            <td>Nocciole</td>
+                            <td>Nocciole pralinate</td>
+                            <td>Morbidoso</td>
+                        </tr>
+                        <tr>
+                            <td>Muesli cioccolato, mandorle e nocciole</td>
+                            <td>Muesli alla frutta essiccata</td>
+                            <td>Muesli avena e cioccolato</td>
+                        </tr>
+                        <tr>
+                            <td>Perle d’Egitto</td>
+                            <td>Riso soffiato al cioccolato</td>
+                            <td>Oreo</td>
+                        </tr>
+                        <tr>
+                            <td>Bastoncini di avena cacao e zenzero Bio</td>
+                            <td>Farro soffiato Bio</td>
+                            <td>Sfoglia</td>
+                        </tr>
+                        <tr>
+                            <td>Riso soffiato Bio</td>
+                            <td>Quinoa Bio</td>
+                            <td>Orzo soffiato Bio</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+    <div class="x-container">
+            <h1>Vaschette Frozen Yogurt <div class="pinkhr"></h1>
+            <p>Puoi anche richiedere il Frozen Yogurt o altri gusti in produzione in comode vaschette da asporto.</p>
+        <ul class="x-list">
+            <li><span>• Vaschetta da 500gr</span><span>€12,50</span></li>
+            <li><span>• Vaschetta da 750gr.</span><span>€18,50</span></li>
+            <li><span>• Vaschetta da 1000gr.</span><span>€25,00</span></li>
+        </ul>
+        <footer>
+            <p>Aggiungi i topping che preferisci a partire da + € 1,00.</p>
+        </footer>
+    </div>
+
+    <div class="x-container">
+        <h1>FRAPPE<div class="pinkhr"></h1>
+        <p>Dall’unione del Frozen Yogurt, il latte e una delle salse, nasce il gustoso Frappè con un ciuffo di panna!</p>
+    <ul class="x-list">
+        <li><span>• YO PICCOLO</span><span>€5,00</span></li>
+        <li><span>• YO GRANDE</span><span>€6,00</span></li>
+    </ul>
+    <footer>
+        <p>Topping a partire da + € 0,50 cad.</p>
+    </footer>
+    </div>
+
+    <div class="x-container">
+        <h1>YO SHAKE<div class="pinkhr"></h1>
+        <p>Dall'unione tra il Frozen Yogurt, base granita e una salsa nasce il fresco e dissetante Yo Shake.</p>
+        <ul class="x-list">
+            <li><span>YO PICCOLO</span><span>€4,00</span></li>
+            <li><span>YO MEDIO</span><span>€5,00</span></li>
+            <li><span>YO GRANDE</span><span>€6,00</span></li>
+            <li><span>YO PARADISE</span><span>€11,50</span></li>
+            <li><span>YO INFINITY</span><span>€21,50</span></li>
+        </ul>
+    <footer>
+        <p>Topping a partire da + € 0,50 cad.</p>
+    </footer>
+    </div>
+
+    <div class="x-container">
+        <h1>BUBBLE TEA<div class="pinkhr"></h1>
+        <p>Thè nero senza latte, uno sciroppo per insaporire il thè e a scelta un mestolino di Boba o Jelly</p>
+        <ul class="x-list">
+            <li><span>YO PICCOLO</span><span>€3,50</span></li>
+            <li><span>YO GRANDE</span><span>€4,50</span></li>
+        </ul>
+    <footer>
+        <p>Un mestolino in aggiunta + € 0,50.</p>
+    </footer>
+    </div>
+
+    <div class="x-container">
+        <h1>GRANITE<div class="pinkhr"></h1>
+        <ul class="x-list">
+            <li>
+                <table id="width100">
+                    <tr>
+                        <td>CLASSICHE</td>
+                        <td>Amarena</td>
+                        <td>Arancia</td>
+                        <td>Caffè</td>
+                    </tr>
+                    <tr>
+                        <td>Piccola €3,00</td>
+                        <td>Cocco</td>
+                        <td>Coca Cola</td>
+                        <td>Fragola</td>
+                    </tr>
+                    <tr>
+                        <td>Grande € 4,00</td>
+                        <td>Limone</td>
+                        <td>Menta</td>
+                        <td>Orzata</td>
+                    </tr>
+                </table>
+            </li>
+            <footer>
+                <p>E’ possibile aggiungere frutta fresca in pezzi + € 1,00.</p>
+            </footer>
+            <li>
+                <table id="width100">
+                    <tr>
+                        <td>POLPA DI FRUTTA</td>
+                        <td>Albicocca</td>
+                        <td>Ananas</td>
+                        <td>Banana</td>
+                    </tr>
+                    <tr>
+                        <td>Piccola €3,00</td>
+                        <td>Fragola</td>
+                        <td>Frutti di Bosco</td>
+                        <td>Lampone</td>
+                    </tr>
+                    <tr>
+                        <td>Grande € 4,00</td>
+                        <td>Lime</td>
+                        <td>Mango</td>
+                        <td>Maracuja</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Melone</td>
+                        <td>Mirtillo</td>
+                        <td>Pesca</td>
+                    </tr>
+                </table>
+            </li>
+            <footer>
+                <p>E’ possibile aggiungere frutta fresca in pezzi</p>
+            </footer>
+            <li>
+                <table id="width100">
+                    <tr>
+                        <td>DELUXE</td>
+                        <td>Caramello</td>
+                        <td>Fiori di sambuco</td>
+                        <td>Lavanda</td>
+                    </tr>
+                    <tr>
+                        <td>Piccola €3,00</td>
+                        <td>Liches</td>
+                        <td>Limone e Zenzero</td>
+                        <td>Liquirizia</td>
+                    </tr>
+                    <tr>
+                        <td>Grande € 4,00</td>
+                        <td>Melagrana</td>
+                        <td>Pompelo rosa </td>
+                        <td>Tamarindo</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Tropical Blu</td>
+                        <td>Violetta</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </li>
+            <footer>
+                <p>E’ possibile aggiungere frutta fresca in pezzi + € 1,00.</p>
+            </footer>
+        </ul>
+    </div>
+
+    <div class="x-container">
+        <h1>FRUTTIAMO € 5,00 <div class="pinkhr"></h1>
+    <footer>
+        <p>100% frutta, verdure e spezie da consumare come bevanda o granita!</p>
+        <p>8 combinazioni di gusti diversi, tutti da provare.</p>
+    </footer>
+</div>
+
+<div class="x-container">
+    <h1>TORTE E PRODOTTI GIA’ PRONTI <div class="pinkhr"></h1>
+    <p>Realizzate artigianalmente, anche su ordinazione con il Frozen Yogurt e le tue guarnizioni preferite.</p>
+    <ul class="x-list">
+        <li><span>Torte di Yogurt a partire da (al Kg) </span><span>€25,00</span></li>
+        <li><span>Coppetta Chiara Jane / Du Mozzichi</span><span>€1,50</span></li>
+        <li><span>Stecco Gelato / Biscotto gelato</span><span>€3,00</span></li>
+        <li><span>Core de Roma</span><span>€3,50</span></li>
+        <li><span>Cheesecake</span><span>€3,50</span></li>
+    </ul>
+    </div>
+
+    <div class="x-container">
+        <h1>CREPES<div class="pinkhr"></h1>
+        <ul class="x-list">
+            <li><span>Nutella su cartoccio</span><span>€4,50</span></li>
+            <li><span>Nutella su piatto </span><span>€5,00</span></li>
+            <li><span>Con 1 Crema / marmellata + 1 granella</span><span>€5,50</span></li>
+            <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+            <li><span>Panna</span><span>€0,50</span></li>
+            <li><span>Crema Pistacchio – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+            <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+        </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>PANCAKES<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>2 DISCHI con 1 crema / marmellata + 1 granella</span><span>€5,50</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>Panna</span><span>€0,50</span></li>
+                <li><span>Crema Pistacchio – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>WAFFLE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>con 1 crema / marmellata + 1 granella</span><span>€6,00</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>Panna</span><span>€0,50</span></li>
+                <li><span>Crema Pistacchio – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>MUG CAKE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>con Frozen Yogurt + 1 crema / salsa + 1 granella</span><span>€5,00</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>Crema Pistacchio – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>CORNETTO<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>con Frozen Yogurt + 1 crema / salsa + 1 granella</span><span>€4,50</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>Crema Pistacchio – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>VEGAN<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>CREPES con marmellata + 1 granella</span><span>€6,00</span></li>
+                <li><span>PANCAKES con marmellata + 1 granella</span><span>€6,50</span></li>
+                <li><span>WAFFLE con marmellata + 1 granella</span><span>€7,00</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>salsa / granella</span><span>€0,50</span></li>
+                <li><span>Crema Nutella Vegan – Frutta Fresca – Sciroppo Acero</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>CIOCCOLATA CALDA<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>Cioccolata Bianca</span><span>€3,50</span></li>
+                <li><span>Cioccolata al Latte</span><span>€3,50</span></li>
+                <li><span>Cioccolata Fondente</span><span>€3,50</span></li>
+                <li style="background: #f2f200;">CON AGGIUNTA DI:</li>
+                <li><span>Granella</span><span>€0,50</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+                <li><span>Mug Cake</span><span>€3,00</span></li>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>CREPES SALATE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <table id="width100">
+                        <tr>
+                            <td>Affettati</td>
+                            <td>Formaggi</td>
+                            <td>Verdure</td>
+                            <td>Salse</td>
+                        </tr>
+                        <tr>
+                            <td>Prosciutto crudo</td>
+                            <td>Emmenthal</td>
+                            <td>Insalata Iceberg</td>
+                            <td>Maionese</td>
+                        </tr>
+                        <tr>
+                            <td>Prosciutto cotto</td>
+                            <td>Provola affumicata</td>
+                            <td>Zucchine grigliate*</td>
+                            <td>Ketchup</td>
+                        </tr>
+                        <tr>
+                            <td>Petto di tacchino</td>
+                            <td>Cheddar</td>
+                            <td>Melanzane grigliate*</td>
+                            <td>Barbecue</td>
+                        </tr>
+                        <tr>
+                            <td>Bresaola</td>
+                            <td></td>
+                            <td></td>
+                            <td>Salsa rosa</td>
+                        </tr>
+                        <tr>
+                            <td>Salame</td>
+                            <td></td>
+                            <td></td>
+                            <td>Senape</td>
+                        </tr>
+                        <tr>
+                            <td>Speck</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Mortadella</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </li>
+                <footer>
+                    <p>*prodotto surgelato</p>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>FROZEN YOGURT / YO SHAKE PROTEICO<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>YO PICCOLO (3 guarnizioni NO HEALTHY)</span><span>€4,00</span></li>
+                <li><span>YO MEDIO (4 guarnizioni NO HEALTHY)</span><span>€5,00</span></li>
+                <li><span>YO GRANDE (5 guarnizioni NO HEALTHY)</span><span>€6,00</span></li>
+                <li><span>YO PARADISE (6 guarnizioni NO HEALTHY)</span><span>€11,50</span></li>
+                <li><span>YO INFINITY (7 guarnizioni NO HEALTHY)</span><span>€21,50</span></li>
+                <footer>
+                    <p>Con l'aggiunta di:</p>
+                        <li>VB Whey 104 (20gr.) - €2,50</li>
+                        <li>Whey Protein (20gr.) - €2,00</li>
+                        <li>Creme proteiche - €1,50</li>
+                        <li>Burro di arachidi - €1,00</li>
+                        <li>Salse a 0 calorie - €1,00</li>
+                        <li>Marmellate 0 zuccheri - €1,50</li>
+                        <li>Oreo Proteico - €1,50</li>
+                        <li>Muesli Proteico - €1,00</li>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>DELIZIE CALDE PROTEICHE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>CREPES DOLCI con 1 crema NO HEALTHY + 1 granella</span><span>€5,50</span></li>
+                <li><span>PANCAKE 1 DISCO con 1 crema NO HEALTHY</span><span>€3,00</span></li>
+                <li><span>MUG CAKE con Frozen Yogurt + 1 crema NO HEALTHY + 1 granella</span><span>€6,50</span></li>
+                <li><span>CREPES SALATA compresa insalata</span><span>€5,50</span></li>
+                <footer>
+                    <p>Con l'aggiunta di:</p>
+                        <li>Salsa Natural 0 - €1,50</li>
+                        <li>Tacchino (70gr.) - €2,00</li>
+                        <li>Bresaola (50gr.) - €2,50</li>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>BOLERO in bottiglia da 500ml<div class="pinkhr"></h1>
+            <p>Prezzo: €1,50 ciascuno</p>
+            <p>SENZA ZUCCHERO, SENZA GRASSI, SENZA GLUTINE SENZA CONSERVANTI, RICCO DI VITAMINA C</p>
+            <table id="width1002">
+                <tr>
+                    <td>1. Acerola</td>
+                    <td>21. Kiwi</td>
+                    <td>41. Prugna</td>
+                </tr>
+                <tr>
+                    <td>2. Ananas</td>
+                    <td>22. Lampone</td>
+                    <td>42. Ribes nero</td>
+                </tr>
+                <tr>
+                    <td>3. Anguria</td>
+                    <td>23. Lime</td>
+                    <td>43. Rosa</td>
+                </tr>
+                <tr>
+                    <td>4. Arancia</td>
+                    <td>24. Litchi</td>
+                    <td>44. Tamarindo</td>
+                </tr>
+                <tr>
+                    <td>5. Arancia rossa</td>
+                    <td>25. Limone</td>
+                    <td>45. Tè frutto della passione</td>
+                </tr>
+                <tr>
+                    <td>6. Bacche di Acai</td>
+                    <td>26. Limone e Lime</td>
+                    <td>46. Tè al limone</td>
+                </tr>
+                <tr>
+                    <td>7. Bacche di Goji</td>
+                    <td>27. Mandarino</td>
+                    <td>47. Tè alla pesca</td>
+                </tr>
+                <tr>
+                    <td>8. Banana</td>
+                    <td>28. Mandorla</td>
+                    <td>48. Uva bianca</td>
+                </tr>
+                <tr>
+                    <td>9. Banana e fragola</td>
+                    <td>29. Mango</td>
+                    <td>49. Uva rossa</td>
+                </tr>
+                <tr>
+                    <td>10. Ciliegia</td>
+                    <td>30. Mela verde</td>
+                    <td>50. Zenzero</td>
+                </tr>
+                <tr>
+                    <td>11. Ciliegia e cola</td>
+                    <td>31. Melograna</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12. Cocco</td>
+                    <td>32. Menta</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13. Cola</td>
+                    <td>33. Melone e Miele</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14. Esotico</td>
+                    <td>34. Mirtillo</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15. Fiori di sambuco</td>
+                    <td>35. Mirtillo rosso</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>16. Frutti di bosco</td>
+                    <td>36. Mora</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17. Frutto del drago</td>
+                    <td>37. Multivitaminico</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>18. Frutto della passione</td>
+                    <td>38. Papaya</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>19. Guaranà</td>
+                    <td>39. Pera</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>20. Guaranabana</td>
+                    <td>40. Pompelmo giallo</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="x-container">
+            <h1>WELLNESS<div class="pinkhr"></h1>
+            <p>Prezzo: €4,00 ciascuno</p>
+            <table id="width1002">
+                <tr>
+                    <th> # </th>
+                    <th>Blend</th>
+                    <th>Ingredients</th>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>Vitalità:</td>
+                    <td>Honeybush, menta, verbena, cannella, radice di liquirizia, lemongrass, calendula.</td>
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>Benessere:</td>
+                    <td>Honeybush verde, the verde, menta crespa, lemonmyrthe, lemongrass, melissa, radice di liquirizia, verbena, estratto di aloe vera, alga spirulina, foglie di ginkgo.</td>
+                </tr>
+                <tr>
+                    <td>55</td>
+                    <td>Serenità:</td>
+                    <td>Rooibos, melissa, honeybush, anice, cannella, radice di liquirizia, luppolo, foglie di mora dolce, cardamomo, fiori di loto.</td>
+                </tr>
+                <tr>
+                    <td>56</td>
+                    <td>Relax:</td>
+                    <td>Melissa, camomilla, fiori di tiglio, menta piperita, salvia, verbena.</td>
+                </tr>
+                <tr>
+                    <td>57</td>
+                    <td>Digestiva:</td>
+                    <td>Rooibos, anice, finocchio, camomilla, menta piperita, foglie di mora, liquirizia.</td>
+                </tr>
+                <tr>
+                    <td>58</td>
+                    <td>Purity:</td>
+                    <td>Ortica, menta crespa, rosa canina, the verde, petali di rosa.</td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>Balance:</td>
+                    <td>Lemongrass, mela, the verde, scorza d'arancia, calendula, zenzero, coriandolo, cardamomo, cannella.</td>
+                </tr>
+            </table>
+        </div>
+        
+        
+
+    </div>
+</div>
+
+<div id="TORTE" class="content">
+    <div class="menu-title">TORTE</div>
+        <div class="grid-container">
+    
+            <div class="x-container">
+                <h1>BUENO E OREO<div class="pinkhr"></h1>
+                    <span style="float:left;">
+                        <img src="Foto/Menu/BuenoOreo.png" id="tp" />
+                    </span>
+                    <ul class="x-list" style="float: left; width: 292px;">
+                        Base e copertura della torta:
+                        <li class="expandable">Crema Bueno <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Zucchero, olio vegetale (colza), LATTE scremato in polvere, NOCCIOLE, LATTE intero in polvere, LATTOSIO, siero di LATTE in polvere, emulsionante (lecitina di SOIA), aroma naturale di vaniglia</li>
+                            </ul>
+                        </li>
+                        <li class="expandable">Oreo <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Farina di FRUMENTO, zucchero, olio di palma, olio di colza, cacao magro in polvere 4,3 %, amido di FRUMENTO, sciroppo di glucosio-fruttosio, agenti lievitanti (carbonati di ammonio, carbonati di potassio, carbonati di sodio), sale, emulsionante (lecitine di SOIA), correttore di acidità (idrossido di sodio), aroma</li>
+                            </ul>
+                        </li>
+                        <li class="expandable" style="font-weight: 600;">Frozen Yogurt Bianco <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>(LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                <li>Acqua</li>
+                                <li>Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477),
+                                    maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido
+                                    citrico), addensante (carbossimetilcellulosa), proteine di pisello.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <footer style="float:left; font-size: 15px;">
+                        <p>Può contenere: uova, mandorle, nocciole, noci, noci di acagiù, noci di pecan, noci del
+                            brasile, pistacchi, noci macadamia.</p>
+                    </footer>
+            </div>
+
+            <div class="x-container">
+                <h1>DULCE DE LECHE &
+                    ARACHIDI SALATE<div class="pinkhr"></h1>
+                    <span style="float:left;">
+                        <img src="Foto/Menu/DulcheArachidi.png" id="tp" />
+                    </span>
+                    <ul class="x-list" style="float: left; width: 292px;">
+                        Base e copertura della torta:
+                        <li class="expandable">Dulce de Leche <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>LATTE condensato zuccherato, sciroppo di glucosio,
+                                    correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi.</li>
+                            </ul>
+                        </li>
+                        <li class="expandable">Digestive <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li> [Farina 56% (farina di GRANO, carbonato di calcio, ferro, niacina,
+                                    tiammina), olio di palma, zucchero, farina integrale di GRANO (13%), sciroppo di
+                                    zucchero parzialmente invertito, agenti lievitanti: carbonato di sodio, acido malico;
+                                    sale</li>
+                            </ul>
+                        </li>
+                        <li class="expandable">Arachidi salate <i class='bx bx-down-arrow'></i>
+                        </li>
+                        <li class="expandable" style="font-weight: 600;">Frozen Yogurt Bianco <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>(LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                <li>Acqua</li>
+                                <li>Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477),
+                                    maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido
+                                    citrico), addensante (carbossimetilcellulosa), proteine di pisello.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <footer style="float:left; font-size: 15px;">
+                        <p>Può contenere tracce di: nocciole.</p>
+                    </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>SACHER<div class="pinkhr"></h1>
+                    <span style="float:left;">
+                        <img src="Foto/Menu/Sacher.png" id="tp" />
+                    </span>
+                    <ul class="x-list" style="float: left; width: 292px;">
+                        Base e copertura della torta:
+                        <li class="expandable">Muffin al cioccolato <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Zucchero, farina di FRUMENTO, olio di colza, UOVO, 11% pezzetti di cioccolato (zucchero, pasta di cacao, burro di cacao, cacao magro in polvere, emulsionante: lecitine), umidificante: glicerolo, acqua, 2% cacao magro in polvere, amido di FRUMENTO, farina di riso, emulsionanti: mono- e digliceridi degli acidi grassi, stearoil-2-lattato di sodio; agenti lievitanti: difosfati, carbonati di sodio; correttore di acidità: acetati di sodio; aroma naturale, acidificante: acido citrico; sale, addensante: gomma di Xanthan.</li>
+                            </ul>
+                        </li>
+                        <li class="expandable">Salsa Albicocca <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Sciroppo di glucosio, zucchero, albicocche, acqua, aroma, acidificanti: E330, E334; addensanti: E440; coloranti: E102, E129. I coloranti (E129, E102) possono influire negativamente sull’attività e l’attenzione dei bambini.</li>
+                            </ul>
+                        </li>
+                        <li class="expandable">Crema Stracciatella al Cioccolato Fondente <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20.5%), emulsionante: lecitine (SOIA), aroma, vanillina.</li>
+                            </ul>
+                        </li>
+                        <li class="expandable" style="font-weight: 600;">Frozen al Cioccolato <i class='bx bx-down-arrow'></i>
+                            <ul class="hidden">
+                                <li>Acqua</li>
+                                <li>Zucchero, cacao magro in polvere, cioccolato (polvere) 15% (cacao in polvere,
+                                    cacao magro in polvere, pasta di cacao, zucchero. Cacao: 92,2% min) fruttosio,
+                                    destrosio, glucosio, amido, stabilizzanti: E415, E412, E407; emulsionante: E471</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <footer style="float:left; font-size: 15px;">
+                        <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.<img src="Foto/Menu/lf.png" style="height: 24px;"/></p>
+                    </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>CHEESECAKE<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Cheesecake.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    Base della torta:
+                    <li class="expandable">Digestive <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Farina 56% (farina di GRANO, carbonato di calcio, ferro, niacina, tiamina), olio di palma, zucchero, farina integrale di GRANO (13%), sciroppo di zucchero parzialmente invertito, agenti lievitanti: carbonato di sodio, acido malico; sale</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Crema Stracciatella al Cioccolato Bianco <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Formaggio spalmabile senza lattosio <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>LATTE delattosato pastorizzato, crema di LATTE delattosata pastorizzata, enzima lattasi, sale, caglio, fermenti lattici. Contiene <0,01/100g di lattosio</li>
+                        </ul>
+                    </li>
+                    Copertura della torta:
+                    <li class="expandable">Salsa ai frutti di Bosco <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Sciroppo di glucosio, zucchero, fragole congelate, mirtilli congelati, more congelate, acidificanti (acido citrico, acido tartarico), succo concentrato di carota nera, addensanti (pectina, farina di semi di carrube, cloruro di calcio), aromi, aroma naturale</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Gelatina in fogli
+                    </li>
+                    <li class="expandable" style="font-weight: 600;">Frozen al Cioccolato <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Acqua</li>
+                            <li>Zucchero, cacao magro in polvere, cioccolato (polvere) 15% (cacao in polvere,
+                                cacao magro in polvere, pasta di cacao, zucchero. Cacao: 92,2% min) fruttosio,
+                                destrosio, glucosio, amido, stabilizzanti: E415, E412, E407; emulsionante: E471</li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.<img src="Foto/Menu/lf.png" style="height: 24px;"/></p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>SAINT'HONORE'<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/SaintHonore.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    Base della torta:
+                    <li class="expandable">Digestive <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Farina 56% (farina di GRANO, carbonato di calcio, ferro, niacina, tiamina), olio di palma, zucchero, farina integrale di GRANO (13%), sciroppo di zucchero parzialmente invertito, agenti lievitanti: carbonato di sodio, acido malico; sale</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Crema delizia al limone <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Olio vegetale (girasole), zucchero, LATTE magro in polvere, LATTE intero in polvere, siero di LATTE in polvere, limone disidratato in pezzi 4,0%, burro di cacao, emulsionante (lecitina di SOIA), acidificante (acido citrico), aroma naturale di limone, aromi, colorante (luteina)</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Frozen Yogurt Bianco <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Yogurt (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                            <li>Acqua</li>
+                            <li>Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                        </ul>
+                    </li>
+                    Copertura della torta:
+                    <li class="expandable">Crema delizia al limone <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Olio vegetale (girasole), zucchero, LATTE magro in polvere, LATTE intero in polvere, siero di LATTE in polvere, limone disidratato in pezzi 4,0%, burro di cacao, emulsionante (lecitina di SOIA), acidificante (acido citrico), aroma naturale di limone, aromi, colorante (luteina)</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Nocciole <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Nocciole</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Bignè <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>UOVA fresche 42%, farina di FRUMENTO, olio di semi di girasole, agenti lievitanti: bicarbonato di ammonio, sale, aroma naturale;<br><br> con ripieno di Crema Pasticciera (LATTE, zucchero, UOVO, amido di mais, vaniglia) e ricoperto da Crema Dulce de Leche (LATTE condensato zuccherato, sciroppo di glucosio, correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                </footer>
+            </div>
+            <div class="x-container">
+                <h1>TIRAMISU'<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Tiramisu.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    Base della torta:
+                    <li class="expandable">Pan di Spagna al caffè <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Farina di FRUMENTO, UOVA, zucchero, caffè</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Frozen Yogurt Bianco <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Yogurt (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                            <li>Acqua</li>
+                            <li>Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Mascarpone <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Crema di LATTE pastorizzata, correttore di acidità: acido citrico</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Gocce di Cioccolato <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, pasta di Cacao, burro di cacao, emulsionante (E322 lecitina di girasole), aroma naturale e vaniglia. Cacao: 46% minimo. Senza glutine</li>
+                        </ul>
+                    </li>
+                    Copertura della torta:
+                    <li class="expandable">Pan di Spagna al caffè <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Farina di FRUMENTO, UOVA, zucchero, caffè</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Savoiardi <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Farina di FRUMENTO 45,5%, zucchero, UOVA intere 26%, sciroppo di glucosio, agenti lievitanti: carbonato acido di ammonio, carbonato acido di sodio, difosfato disodico), aroma, grasso vegetale</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Cacao Magro in Polvere <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Cacao Magro in Polvere</li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>ROMOLETTA<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Romoletta.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    Base della torta:
+                    <li class="expandable">Muffin al cioccolato <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, farina di FRUMENTO, olio di colza, UOVO, 11% pezzetti di cioccolato (zucchero, pasta di cacao, burro di cacao, cacao magro in polvere, emulsionante: lecitine), umidificante: glicerolo, acqua, 2% cacao magro in polvere, amido di FRUMENTO, farina di riso, emulsionanti: mono- e digliceridi degli acidi grassi, stearoil-2-lattato di sodio; agenti lievitanti: difosfati, carbonati di sodio; correttore di acidità: acetati di sodio; aroma naturale, acidificante: acido citrico; sale, addensante: gomma di Xanthan</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Frozen Yogurt Bianco <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Yogurt (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                            <li>Acqua</li>
+                            <li>Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Crema Stracciatella al Cioccolato Fondente <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.<img src="Foto/Menu/lf.png" style="height: 24px;"/></p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>BISCOTTO<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Biscotto.png" id="tp" />
+                </span>
+                <p style="font-weight: bold;">Farina di FRUMENTO, zucchero, grasso vegetale (olio di palma rspo sg), gocce di cioccolato (zucchero, pasta di cacao, burro di cacao, emulsionante: fosfatidi di ammonio (E442)), sciroppo di glucosio, UOVA, caramello naturale (E150e), agenti lievitanti: carbonato acido di sodio (E500ii).</p>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    <li class="expandable"><b>BIANCO<img src="Foto/Menu/lf.png" style="height: 24px;"/></b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                    <li><b>Acqua</b></li>
+                                    <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Gocce di Cioccolato</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, pasta di Cacao, burro di cacao, emulsionante (E322 lecitina di girasole), aroma naturale e vaniglia. Cacao: 46% minimo. Senza glutine</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>ARANCIO</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Dulce de Leche</b>: LATTE condensato zuccherato, sciroppo di glucosio, correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi</li>
+                                    <li><b>Arachidi salate</b></li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                            <li><b>Colorante alimentare</b></li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>VERDE</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Crema Bueno</b>: Zucchero, olio vegetale (colza), LATTE scremato in polvere, NOCCIOLE, LATTE intero in polvere, LATTOSIO, siero di LATTE in polvere, emulsionante (lecitina di SOIA), aroma naturale di vaniglia</li>
+                                    <li><b>Oreo</b>: Farina di FRUMENTO, zucchero, olio di palma, olio di colza, cacao magro in polvere 4,3 %, amido di FRUMENTO, sciroppo di glucosio-fruttosio, agenti lievitanti (carbonati di ammonio, carbonati di potassio, carbonati di sodio), sale, emulsionante (lecitine di SOIA), aroma, destrosio</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                            <li><b>Colorante alimentare</b></li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>NERO <img src="Foto/Menu/lf.png" style="height: 24px;"/></b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Salsa amarena</b>: ciliegie e amarene candite 40,0% (frutta in proporzione variabile ciliegie e amarene 76,8%, sciroppo di glucosio, zucchero, correttore di acidità (acido citrico), succo concentrato di carota nera), sciroppo di glucosio, zucchero, acqua, succo concentrato di amarena 2,0%, acidificante (acido citrico), succo concentrato di carota nera, addensanti (agar-agar, pectina)</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Fondente</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                </footer>
+            </div>
+            
+            
+            <div class="x-container">
+                <h1>REMINO<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Remino.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    <li class="expandable"><b>BIANCO</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                    <li><b>Acqua</b></li>
+                                    <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Gocce di Cioccolato</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, pasta di Cacao, burro di cacao, emulsionante (E322 lecitina di girasole), aroma naturale e vaniglia. Cacao: 46% minimo. Senza glutine</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>ARANCIO</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Dulce de Leche</b>: LATTE condensato zuccherato, sciroppo di glucosio, correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi</li>
+                                    <li><b>Arachidi salate</b></li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                            <li><b>Colorante alimentare</b></li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>VERDE</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Crema Bueno</b>: Zucchero, olio vegetale (colza), LATTE scremato in polvere, NOCCIOLE, LATTE intero in polvere, LATTOSIO, siero di LATTE in polvere, emulsionante (lecitina di SOIA), aroma naturale di vaniglia</li>
+                                    <li><b>Oreo</b>: Farina di FRUMENTO, zucchero, olio di palma, olio di colza, cacao magro in polvere 4,3 %, amido di FRUMENTO, sciroppo di glucosio-fruttosio, agenti lievitanti (carbonati di ammonio, carbonati di potassio, carbonati di sodio), sale, emulsionante (lecitine di SOIA), aroma, destrosio</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                            <li><b>Colorante alimentare</b></li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>NERO</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>variegato con Salsa amarena</b>: ciliegie e amarene candite 40,0% (frutta in proporzione variabile ciliegie e amarene 76,8%, sciroppo di glucosio, zucchero, correttore di acidità (acido citrico), succo concentrato di carota nera), sciroppo di glucosio, zucchero, acqua, succo concentrato di amarena 2,0%, acidificante (acido citrico), succo concentrato di carota nera, addensanti (agar-agar, pectina)</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>Crema Stracciatella al Cioccolato Fondente</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li><b>Zucchero</b>, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>CORE DE ROMA<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/CoredeRoma.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 292px;">
+                    <li class="expandable">Frozen al Cioccolato <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Acqua</li>
+                            <li>Zucchero, cacao magro in polvere, cioccolato (polvere) 15% (cacao in polvere, cacao magro in polvere, pasta di cacao, zucchero. Cacao: 92.2% min) fruttosio, destrosio, glucosio, amido, stabilizzanti: E415, E412, E407; emulsionante: E471</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Muffin al cioccolato <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, farina di FRUMENTO, olio di colza, UOVO, 11% pezzetti di cioccolato (zucchero, pasta di cacao, burro di cacao, cacao magro in polvere, emulsionante: lecitine), umidificante: glicerolo, acqua, 2% cacao magro in polvere, amido di FRUMENTO, farina di riso, emulsionanti: mono- e digliceridi degli acidi grassi, stearoil-2-lattato di sodio; agenti lievitanti: difosfati, carbonati di sodio; correttore di acidità: acetati di sodio; aroma naturale, acidificante: acido citrico; sale, addensante: gomma di Xanthan</li>
+                        </ul>
+                    </li>
+                    <li class="expandable">Salsa Albicocca <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Sciroppo di glucosio, zucchero, albicocche, acqua, aroma, acidificanti: E330, E334; addensanti: E440; coloranti: E102, E129. I coloranti (E129, E102) possono influire negativamente sull’attività e l’attenzione dei bambini</li>
+                        </ul>
+                    </li>
+                    Copertura:
+                    <li class="expandable">Crema Stracciatella al Cioccolato Fondente <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden">
+                            <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                        </ul>
+                    </li>
+                </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia. <img src="Foto/Menu/lf.png" style="height: 24px;"/></p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>CHEESECAKE<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Cheesecake2.png" id="tp" />
+                </span>
+                <ul class="x-list" style="float: left; width: 60%;">
+                    <li class="expandable"><b>Digestive</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li><b>Farina 56%</b> (farina di GRANO, carbonato di calcio, ferro, niacina, tiamina), olio di palma, zucchero, farina integrale di GRANO (13%), sciroppo di zucchero parzialmente invertito, agenti lievitanti: carbonato di sodio, acido malico; sale</li>
+                        </ul>
+                    </li>
+
+                    <li><b>Panna</b></li>
+                    <li><b>Formaggio spalmabile</b></li>
+                    <li><b>Yogurt fresco</b></li>
+                    <li class="expandable"><b>Base Unico</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li><b>(destrosio, sciroppo di glucosio, destrosio d’uva, fibre vegetali 7,5% gelatina alimentare, proteine del LATTE 6,5%, amido)</b> </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="x-list" style="float: left; width: 100%;">
+                    <p><b>GUSTI:</b></p>
+                    <div class="pinkhr"></div>
+                    <li class="expandable"><b>Salsa ai frutti di Bosco</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li>Sciroppo di glucosio, zucchero, fragole congelate, mirtilli congelati, more congelate, acidificanti (acido citrico, acido tartarico), succo concentrato di carota nera, addensanti (pectina, farina di semi di carrube, cloruro di calcio), aromi, aroma naturale</li>
+                        </ul>
+                    </li>
+                    <div class="pinkhr"></div>
+                    <li class="expandable"><b>Crema Nutella</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li>Zucchero, olio di palma, NOCCIOLE (13%), LATTE scremato in polvere (8,7%), cacao magro (7,4%), emulsionanti: lecitine (SOIA), vanillina</li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>Oreo</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li>Farina di FRUMENTO, zucchero, olio di palma, olio di colza, cacao magro in polvere 4,3 %, amido di FRUMENTO, sciroppo di glucosio-fruttosio, agenti lievitanti (carbonati di ammonio, carbonati di potassio, carbonati di sodio), sale, emulsionante (lecitine di SOIA), correttore di acidità (idrossido di sodio), aroma</li>
+                        </ul>
+                    </li>
+                    <div class="pinkhr"></div>
+                    <li class="expandable"><b>Dulce de Leche</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li>LATTE condensato zuccherato, sciroppo di glucosio, correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi</li>
+                        </ul>
+                    </li>
+                    <li><b>Arachidi salate</b></li>
+
+                    <footer style="font-size: 15px; width: 100%;">
+                        <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                    </footer>
+                </ul>
+
+            </div>
+            
+            <div class="x-container">
+                <h1>COPPETTA CHIARA JANE<div class="pinkhr"></div></h1>
+                <span style="float:left;">
+                    <img src="Foto/Menu/Coppettachiarajane.png" id="tp" />
+                </span>
+                <ul class="x-list">
+                <ul class="x-list" style="float: left; width: 65%;">
+                    <li class="expandable"><b>Coppetta</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li>Glassa di cioccolato (40%) (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina di SOIA, aroma vaniglia), Zucchero, farina di FRUMENTO tipo "0", farina di FRUMENTO tipo "00", amido di FRUMENTO, glucosio, olio di cocco raffinato, emulsionante: lecitina di SOIA. Colorante: Caramello. Albume d’UOVA, sale aroma, correttore di acidità: E500, E503i.</li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                            <li><b>Acqua</b></li>
+                            <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                        </ul>
+                    </li>
+                    <li class="expandable"><b>COPERTURE:</b> <i class='bx bx-down-arrow'></i>
+                        <ul class="hidden sub-menu">
+                            <li class="expandable"><b>1. Crema Raffaello</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Crema cioccolato bianco: Zucchero, oli e grassi vegetali (colza, palma, shea e burro di cacao), LATTOSIO, siero di LATTE in polvere, LATTE scremato in polvere, emulsionante: lecitine (SOIA), aromi; Wafer alla vaniglia: olio di cocco, 22,8% farina di FRUMENTO, amido di FRUMENTO, zucchero, destrosio, LATTE scremato in polvere, siero di LATTE in polvere, farina di SOIA, emulsionanti: lecitina di SOIA; 0,16 estratto di vaniglia da bacche Bourbon, sale, agenti lievitanti: carbonato di sodio, Olio di semi di girasole, Farina di cocco</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>2. Crema Rocher</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Crema fondente [(Oli vegetali (colza, girasole in proporzione variabile), zucchero, cacao magro in polvere 25%, NOCCIOLE 8%, olio vegetale (palma), LATTE scremato in polvere, grassi vegetali (karité e cacao), emulsionante: lecitine (SOIA), aroma]; Wafer alla nocciola (olio di cocco, 22,8% farina di FRUMENTO, amido di FRUMENTO, zucchero, destrosio, 5,6% NOCCIOLE, LATTE scremato in polvere, siero del LATTE in polvere, cacao magro, farina di SOIA, emulsionanti: lecitina di SOIA, sale, aromi.); Olio di semi di girasole; NOCCIOLE</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>3. Crema Pistacchio</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Olio vegetale (girasole), zucchero, pasta di PISTACCHI 20,0%, LATTE magro in polvere, LATTE intero in polvere, siero di LATTE in polvere, zucchero caramellato, burro di cacao, emulsionante (lecitina di SOIA), colorante (E141), aromi; e NOCCIOLE</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>4. Salsa di Lime <img src="Foto/Menu/lf.png" style="height: 24px;"/></b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Zucchero, sciroppo di glucosio, acqua, scorzette di lime semicandite 15,0% (scorze di lime, zucchero, acidificante (acido citrico)), destrosio, amido modificato, addensanti (agar-agar, pectina), acidificante (acido ascorbico), aroma naturale, aroma naturale di lime, estratto di spirulina; e Farina di Cocco</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>5. Salsa Menta <img src="Foto/Menu/lf.png" style="height: 24px;"/></b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Sciroppo di glucosio, zucchero, acqua, estratto di menta, aroma naturale di menta, addensanti (carragenina, farina di semi di carrube), colorante (blu patentato V) e Gocce di Cioccolato (Zucchero, pasta di Cacao, burro di cacao, emulsionante (E322 lecitina di girasole), aroma naturale e vaniglia. Cacao: 46% minimo. Senza glutine)</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>6. Salsa Zenzero <img src="Foto/Menu/lf.png" style="height: 24px;"/></b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Sciroppo di glucosio, zenzero candito 38,0% (zenzero 60%, zucchero di canna), acqua, addensanti (farina di semi di carrube, carragenina, pectina), acidificante (acido citrico), zucchero, aroma naturale di zenzero, aromi</li>
+                                </ul>
+                            </li>
+                            <li class="expandable"><b>7. Crema Zabaione <img src="Foto/Menu/lf.png" style="height: 24px;"/> </b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu">
+                                    <li>Vino marsala, zucchero, acqua, tuorlo d’UOVO in polvere, albume d’UOVO in polvere, maltodestrina, caramello (E150a), colorante (curcumina), aromi e Granella di amaretti (zucchero, MANDORLE di albicocca (20%), albume d’UOVO (11%), agenti lievitanti (E500ii E503ii), aromi)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+                <footer style="float:left; font-size: 15px;">
+                    <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+                </footer>
+            </div>
+            
+            <div class="x-container">
+                <h1>DU MOZZICHI'<div class="pinkhr"></div></h1>
+                
+                <div class="x-section" style="display: flex; margin-bottom: 20px;">
+                    <div>
+                        <img src="Foto/Menu/Riso.png" style="width:100%;" id="tp2" />
+                    </div>
+                    <div style="flex: 2; padding-left: 20px;">
+                        <ul class="x-list">
+                            <li class="expandable"><b>RISO</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu" style="display: block !important;">
+                                    <li class="expandable"><b>Cannolino Riso</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Glassa di cioccolato: 51% (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina di SOIA, aroma vaniglia), Granella di riso 20% (riso soffiato, zucchero, sciroppo di glucosio, zucchero caramellato, olio di girasole altoleico, miele), farina di FRUMENTO tipo "0", zucchero, amido di FRUMENTO, emulsionante: lecitina di SOIA, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                            <li><b>Acqua</b></li>
+                                            <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Salsa al Whisky</b> <img src="Foto/Menu/lf.png" style="height: 24px;" /> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Sciroppo di glucosio, zucchero, whisky 17,0%, acqua, colorante (caramello (E150a)), aromi</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Crema Stracciatella al Cioccolato Bianco</b> <img src="Foto/Menu/lf.png" style="height: 24px;" /> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="x-section" style="display: flex; margin-bottom: 20px;">
+                    <div >
+                        <img src="Foto/Menu/Cacao.png" style="width:100%;" id="tp2" />
+                    </div>
+                    <div style="flex: 2; padding-left: 20px;">
+                        <ul class="x-list">
+                            <li class="expandable"><b>CACAO</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu" style="display: block !important;">
+                                    <li class="expandable" ><b>Cannolino Cacao</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Glassa di cioccolato: 46% (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina di SOIA, aroma vaniglia), Granella di cacao 29% (zucchero a velo, (saccarosio, amido di FRUMENTO 3%), amido di FRUMENTO, olio di girasole, cacao magro in polvere 5%, pasta di cacao 3%, amido di patata). Farina di FRUMENTO tipo "0", zucchero, amido di FRUMENTO, emulsionante: lecitina di SOIA, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                            <li><b>Acqua</b></li>
+                                            <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Salsa alla Zuppa Inglese</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Sciroppo di glucosio, zucchero, acqua, aromi (UOVO), aroma naturale, addensante (agar-agar), colorante (estratto di paprika)</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Crema Stracciatella al Cioccolato Fondente</b> <img src="Foto/Menu/lf.png" style="height: 24px;" /> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (SOIA), aroma, vanillina</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="x-section" style="display: flex; margin-bottom: 20px;">
+                    <div >
+                        <img src="Foto/Menu/LimoneMeringhe.png" style="width:100%;" id="tp2" />
+                    </div>
+                    <div style="flex: 2; padding-left: 20px;">
+                        <ul class="x-list">
+                            <li class="expandable"><b>LIMONE/MERINGHE</b> <i class='bx bx-down-arrow'></i>
+                                <ul class="hidden sub-menu" style="display: block !important;">
+                                    <li class="expandable"><b>Cannolino Limone Meringa</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li>Glassa di limone: 47% (zucchero, grasso vegetale palmisti e cocco, LATTE scremato in polvere, lecitina di SOIA, aroma limone, coloranti (E141, E161b)), granella di meringa 29% (zucchero, albume d’UOVO, aromi, colorante: Estratto naturale di cartamo, E120), farina di FRUMENTO tipo "0", zucchero, amido di FRUMENTO, emulsionante: lecitina di SOIA, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</li>
+                                        </ul>
+                                    </li>
+                                    <li class="expandable"><b>Frozen Yogurt Bianco</b> <i class='bx bx-down-arrow'></i>
+                                        <ul class="hidden sub-menu">
+                                            <li><b>Yogurt</b> (LATTE intero, fermenti lattici vivi) zucchero 2%</li>
+                                            <li><b>Acqua</b></li>
+                                            <li><b>Zucchero</b>, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di SOIA, aromi
+            
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            
+            
+    </div>
+    <footer style="float:left; font-size: 15px;">
+        <p>Può contenere tracce di: latte, uova, cereali contenenti glutine, frutta a guscio, soia.</p>
+    </footer>
+    </div>
+</div></div>
+<div id="ALLERGENI" class="content">
+    <div class="menu-title">ALLERGENI</div>
+
+    <div class="container">
+        <div class="legend">
+            <h2>LEGGENDA</h2>
+            <div class="legend-item">
+                <img src="Foto/Menu/lf.png" alt="Lactose Free">
+                <span>Prodotti che non contengono latte e suoi derivati. Verificare che non ne siano presenti tracce.</span>
+            </div>
+            <div class="legend-item">
+                <img src="Foto/Menu/vo.png" alt="Vegan">
+                <span>Prodotti che non hanno nei loro ingredienti nessun componente di derivazione animale.</span>
+            </div>
+            <div class="legend-item">
+                <img src="Foto/Menu/sg.png" alt="Gluten Free">
+                <span>Tutti i prodotti indicati con questo simbolo sono privi di glutine, ma possono essere soggetti a contaminazione incrociata o aerea.</span>
+            </div>
+            <div class="legend-item">
+                <span>Tutti gli allergeni sono indicati nella lista ingredienti in <b>MAIUSCOLO</b>.</span>
+            </div>
+        </div>
+
+        <div class="product-list">
+            <h2>LISTA PRODOTTI</h2>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">YOGURT</span>
+                    <span class="product-description">Yogurt (<b>LATTE</b> intero, fermenti lattici vivi) zucchero 2% Mila Sudtirol.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">PREPARATO YOGURT SOFT</span>
+                    <span class="product-description">Zucchero, destrosio, grasso vegetale di cocco, emulsionanti (E472b, E477), maltodestrine, sciroppo di glucosio, farina di <b>SOIA</b>, aromi, acidificante (acido citrico), addensante (carbossimetilcellulosa), proteine di pisello. Può contenere: <b>latte, uovo, mandorle, nocciole, noci, pistacchi.</b></span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">LIFESTYLE</span>
+                    <span class="product-description">Edulcoranti (maltitolo, eritritolo, sorbitolo), maltodestrine, farina diastasata di riso, grasso vegetale (cocco), emulsionanti (E471, E477), fibre vegetali, addensanti (gomma di tara, carbossimetilcellulosa, gomma di guar), proteine di pisello, aroma naturale, edulcorante (glicosidi steviotici da stevia). Può contenere tracce di: <b>soia, latte, uovo, mandorle, nocciole, noci, pistacchi.</b></span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">PREPARATO SOFT CIOCCOLATO</span>
+                    <span class="product-description">Zucchero, cacao magro in polvere, cioccolato (polvere) 15% (cacao in polvere, cacao magro in polvere, pasta di cacao, zucchero. Cacao: 92,2% min) fruttosio, destrosio, glucosio, amido, stabilizzanti (E415, E412, E407), emulsionante (E471). Può contenere tracce di: <b>latte, derivati del latte e soia.</b></span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">YO SHAKE</span>
+                    <span class="product-description">Frozen Yogurt, granita, salsa a scelta.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">FRAPPE'</span>
+                    <span class="product-description">Frozen Yogurt, <b>LATTE</b> intero, salsa a scelta. Decorato con <b>PANNA</b>.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREPES</span>
+                    <span class="product-description"><b>LATTE</b> intero, Farina di <b>FRUMENTO</b>, <b>UOVA</b>, <b>BURRO</b>, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREPES SALATE</span>
+                    <span class="product-description"><b>LATTE</b> intero, farina di <b>FRUMENTO</b> integrale, farina di <b>FRUMENTO</b>, <b>UOVA</b>, olio di semi di girasole, sale.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">PANCAKE</span>
+                    <span class="product-description"><b>LATTE</b> intero, Farina di <b>FRUMENTO</b>, <b>UOVA</b>, zucchero, <b>BURRO</b>, olio di semi di girasole, lievito per dolci, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">WAFFLE</span>
+                    <span class="product-description"><b>LATTE</b> intero, Farina di <b>FRUMENTO</b>, <b>UOVA</b>, zucchero, <b>BURRO</b>, olio di semi di girasole, lievito per dolci, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MUG CAKE</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b>, <b>UOVA</b>, zucchero, <b>LATTE</b> intero, <b>BURRO</b>, lievito per dolci, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="icons">
+                    <img src="Foto/Menu/lf.png" alt="Lactose Free">
+                    <img src="Foto/Menu/vo.png" alt="Vegan">
+                </div>
+                <div class="product-info">
+                    <span class="product-title">VEGAN CREPES</span>
+                    <span class="product-description">Bevanda vegetale, Farina di <b>FRUMENTO</b>, zucchero, olio di semi di girasole, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="icons">
+                    <img src="Foto/Menu/lf.png" alt="Lactose Free">
+                    <img src="Foto/Menu/vo.png" alt="Vegan">
+                </div>
+                <div class="product-info">
+                    <span class="product-title">VEGAN PANCAKE</span>
+                    <span class="product-description">Bevanda vegetale, Farina di <b>FRUMENTO</b>, zucchero, olio di semi di girasole, lievito per dolci, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="icons">
+                    <img src="Foto/Menu/lf.png" alt="Lactose Free">
+                    <img src="Foto/Menu/vo.png" alt="Vegan">
+                </div>
+                <div class="product-info">
+                    <span class="product-title">VEGAN WAFFLE</span>
+                    <span class="product-description">Bevanda vegetale, Farina di <b>FRUMENTO</b>, zucchero, olio di semi di girasole, lievito per dolci, sale, aroma vaniglia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREPE PROTEICA</span>
+                    <span class="product-description">Albume d’ <b>UOVO</b>, farina di <b>AVENA</b> deamarizzata istantanea. Può contenere: frutta a guscio, sesamo, solfiti, soia, latte e uovo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">PANCAKE PROTEICO</span>
+                    <span class="product-description">Albume d’ <b>UOVO</b>, farina di <b>AVENA</b> deamarizzata istantanea. Può contenere: frutta a guscio, sesamo, solfiti, soia, latte e uovo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">WAFFLE PROTEICO</span>
+                    <span class="product-description">Albume d’ <b>UOVO</b>, farina di <b>AVENA</b> deamarizzata istantanea. Può contenere: frutta a guscio, sesamo, solfiti, soia, latte e uovo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREPE PROTEICA SALATA</span>
+                    <span class="product-description">Albume d’ <b>UOVO</b>, farina di <b>AVENA</b> deamarizzata istantanea. Può contenere: frutta a guscio, sesamo, solfiti, soia, latte e uovo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">BASE GRANITA</span>
+                    <span class="product-description">Acqua, zucchero, destrosio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">GRATTACHECCA</span>
+                    <span class="product-description">Acqua.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">BUBBLE TEA</span>
+                    <span class="product-description">Acqua, zucchero, thè nero (1%), aromi, acidificante: acido citrico; colorante: E150d. Può contenere tracce di: soia, latte e frutta a guscio e anidride solforosa.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">BISCOTTO</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b>, zucchero, grasso vegetale (olio di palma rspo sg), gocce di cioccolato (zucchero, pasta di cacao, burro di cacao, emulsionante: fostatidi di ammonio (E442)), sciroppo di glucosio, <b>UOVA</b>, caramello naturale (E150e), agenti lievitanti: carbonato acido di sodio (E500ii). Può contenere tracce di: latte e frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CONO</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b> tipo “0”, amido di <b>FRUMENTO</b>, stabilizzante: maltitolo, Emulsionante: lecitina di <b>SOIA</b>, olio di semi di <b>SOIA</b>, sale, colorante: caramello, aroma, Edulcorante: E950, correttori di acidità E500, E503i.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">COPPETTA</span>
+                    <span class="product-description">Glassa di cioccolato (40%) (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina di <b>SOIA</b>, aroma vaniglia). Zucchero, farina di <b>FRUMENTO</b> tipo “0”, farina di <b>FRUMENTO</b> tipo “00”, amido di <b>FRUMENTO</b>, glucosio, olio di cocco raffinato, emulsionante: lecitina di <b>SOIA</b>. Colorante. Caramello. Albume d’<b>UOVA</b>, sale aroma, correttore di acidità: E500, E503i.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CANNOLINO CACAO</span>
+                    <span class="product-description">Glassa di cioccolato: 46% (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina di <b>SOIA</b>, aroma vaniglia), Granella di cacao 29% (zucchero a velo, (saccarosio, amido di <b>FRUMENTO</b> 3%), amido di <b>FRUMENTO</b>, olio di girasole, cacao magro in polvere 5%, pasta di cacao 3%, amido di patata). Farina di <b>FRUMENTO</b> tipo “0”, zucchero, amido di <b>FRUMENTO</b>, emulsionante: lecitina di <b>SOIA</b>, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CANNOLINO RISO</span>
+                    <span class="product-description">Glassa di cioccolato: 51% (zucchero, grasso vegetale di palma, cacao magro in polvere 16%, lecitina si <b>SOIA</b>, aroma vaniglia), Granella di riso 20% (riso soffiato, zucchero, sciroppo di glucosio, zucchero caramellato, olio di girasole altoleico, miele), farina di <b>FRUMENTO</b> tipo “0”, zucchero, amido di <b>FRUMENTO</b>, emulsionante: lecitina di <b>SOIA</b>, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CANNOLINO LIMONE MERINGA</span>
+                    <span class="product-description">Glassa di limone: 47% (zucchero, grasso vegetale palmisti e cocco, <b>LATTE</b> scremato in polvere, lecitina si <b>SOIA</b>, aroma limone, coloranti E141, E161b), granella di meringa 29% (zucchero, albume d’<b>UOVO</b>, aromi, colorante: Estratto naturale di cartamo, E120), farina di <b>FRUMENTO</b> tipo “0”, zucchero, amido di <b>FRUMENTO</b>, emulsionante: lecitina di <b>SOIA</b>, colorante: caramello, sale, aroma, antiossidante: E300, correttore di acidità E503i.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">BASE CHEESE CAKE</span>
+                    <span class="product-description">Digestive [Farina 56% (farina di <b>GRANO</b>, carbonato di calcio, ferro, niacina, tiammina), olio di palma, zucchero, farina integrale di <b>GRANO</b> (13%), sciroppo di zucchero parzialmente invertito, agenti lievitanti: carbonato di sodio, acido malico; sale. Impasto: <b>PANNA</b>, formaggio spalmabile, yogurt fresco, base Unico 2 (destrosio, sciroppo di glucosio, destrosio d’uva, fibre vegetali 7,5% gelatina alimentare, proteine del <b>LATTE</b> 6,5%, amido), destrosio. Può contenere: soia, latte, uovo, nocciole, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CORNETTO</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b>, lievito madre (farina di <b>FRUMENTO</b>, acqua), <b>BURRO</b>, oli e grassi vegetali (palma e girasole), zucchero, <b>UOVA</b> 11%, <b>LATTE</b> fresco pastorizzato 2%, tuorlo d’<b>UOVA</b>, emulsionanti: mono e digliceridi degli acidi grassi; miele, fibre vegetali, sale, aromi. Può contenere tracce di: soia, senape, frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMOLATO SPRITZ</span>
+                    <span class="product-description">Acqua, aperol, prosecco, soluzione frutta giubileo (zucchero di canna, acqua, fruttosio, zucchero d’uva, fibra vegetale, stabilizzante: pectina. Può contenere tracce di: latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA ALBICOCCA</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, albicocche, acqua, aroma, acidificanti: E330, E334; addensanti: E440; coloranti: E102, E129. I coloranti (E129, E102) possono influire negativamente sull'attività e l'attenzione dei bambini. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA AMARENA</span>
+                    <span class="product-description">Ciliegie e amarene candite 40,0% (frutta in proporzione variabile ciliegie e amarene 76,8%, sciroppo di glucosio, zucchero, correttore di acidità (acido citrico), succo concentrato di carota nera), sciroppo di glucosio, zucchero, acqua, succo concentrato di amarena 2,0%, acidificante (acido citrico), succo concentrato di carota nera, addensanti (agar-agar, pectina), aromi. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA ANANAS</span>
+                    <span class="product-description">Polpa di ananas da concentrato 55%, ananas congelato 30%, zucchero, sciroppo di glucosio, polpa di ananas 15%, acidificante (acido citrico), aromi, addensanti (pectina, farina di semi di carrube), colorante (curcumina), aroma. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA ANGURIA</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, acqua, aroma, acidificanti: E330; coloranti: E163, E102, E129, addensanti: E440. I coloranti (E129, E102) possono influire negativamente sull'attività e l'attenzione dei bambini. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA BANANA</span>
+                    <span class="product-description">Zucchero, purea di banana 30,0%, sciroppo di glucosio, acidificanti (acido citrico, acido malico), aromi, addensanti (pectina, farina di semi di carrube). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA CAFFE’</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, caffè (2%), colorante: caramello semplice, emulsionante: E471, aromi. Può contenere: latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA CARAMELLO</span>
+                    <span class="product-description">Zucchero e sciroppo di glucosio caramellizzati, sciroppo di glucosio, zucchero, coloranti: E150a, aromi. Può contenere: latte, uovo, nocciole, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA FRAGOLA</span>
+                    <span class="product-description">Polpa di fragola concentrata 66%, fragole congelate 34%, sciroppo di glucosio, zucchero, acidificante (acido citrico), coloranti (antociani, curcumina), aromi, semi di fragola, addensante, (pectina). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA FICHI CARAMELLATI</span>
+                    <span class="product-description">Fichi congelati 60,0%, zucchero caramellato, zucchero, aroma naturale. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA FRUTTI DI BOSCO</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, fragole congelate, mirtilli congelati, more congelate, acidificanti (acido citrico, acido tartarico), succo concentrato di carota nera, addensanti (pectina, farina di semi di carrube, cloruro di calcio), aromi, aroma naturale. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA LAMPONE</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, succo di lampone da concentrato 27,0%, lamponi congelati 3,0%, acidificante (acido citrico), addensante (pectina), colorante (antociani), aromi, estratto di cartamo. Può contenere: soia, latte, uovo, mandorle, nocciole, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA LIME</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, acqua, scorze di lime semicandite 15,0%(scorze di lime, zucchero, acidificante (acido citrico)), destrosio, amido modificato, addensanti (agar-agar, pectina), acidificante (acido ascorbico), aroma naturale, aroma naturale di lime, estratto di spirulina. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA LIQUIRIZIA</span>
+                    <span class="product-description">Zucchero, acqua, sciroppo di glucosio, liquirizia (14%), coloranti naturali: E150b; addensanti: E407; aroma. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MANGO</span>
+                    <span class="product-description">Purea di mango Alphonso congelata 40,0%, zucchero, sciroppo di glucosio, acidificante (acido citrico), aromi, coloranti (caroteni, curcumina), addensanti (pectina, farina di semi di carrube). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MARACUJA</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, acqua, polpa di maracuja congelata 10,0%, acidificanti (acido citrico, acido tartarico), amido modificato, addensanti (agar- agar, pectina), aroma naturale, coloranti (caroteni, riboflavina). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MARRON GLACE’</span>
+                    <span class="product-description">Marroni canditi in pezzi 40,0% (marroni, zucchero, sciroppo di glucosio-fruttosio, aroma naturale di vaniglia), zucchero, sciroppo di glucosio, acqua, aromi, colorante (E150a), alcool, cacao magro in polvere, addensanti (pectina, farina di semi di carrube, cloruro di calcio). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MELAGRANA</span>
+                    <span class="product-description">Melagrane congelate 40,0%, zucchero, sciroppo di glucosio, destrosio, acidificante (acido citrico), succo concentrato di carota nera, addensanti (pectina, farina di semi di carrube, carragenina), aroma naturale, estratto di cartamo. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MELONE</span>
+                    <span class="product-description">Zucchero, succo di melone da concentrato 72%, sciroppo di glucosio, melone congelato 28%, aromi, acidificante (acido citrico), coloranti (antociani, caroteni), addensanti (pectina, farina di semi di carrube). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MENTA</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, acqua, estratto di cartamo, aroma naturale di menta, addensanti (carragenina, farina di semi di carrube), colorante (blu patentato V). Può contenere: latte, uovo, nocciole, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA MIRTILLO</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, polpa di mirtillo da concentrato 20,1%, mirtilli congelati 20%, acidificante (acido citrico), coloranti (antociani, caramello (E150a), caroteni), aromi, addensanti (pectina, farina di semi di carrube). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA PESCA</span>
+                    <span class="product-description">Succo di pesca da concentrato 65%, pesca cubetti congelata 35%, zucchero, sciroppo di glucosio, acidificante (acido citrico), aromi, coloranti (caroteni, curcumina), addensanti (pectina, farina di semi di carrube). Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA PUFFO</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, acqua, aromi, addensanti: E407; colorante: E133. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA VANIGLIA</span>
+                    <span class="product-description">Zucchero, sciroppo di glucosio, acqua, aromi, sale, baccelli di vaniglia macinati, addensanti (agar-agar, pectina), estratto di vaniglia 0,1%. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA WHISKY</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, whisky 17,0%, acqua, colorante (caramello (E150a)), aromi. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA ZENZERO</span>
+                    <span class="product-description">Sciroppo di glucosio, zenzero candito 38,0%(zenzero 60%, zucchero di canna), acqua, addensanti (farina di semi di carrube, carragenina, pectina), acidificante (acido citrico), zucchero, aroma naturale. Può contenere: soia, latte, uovo, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">SALSA ZUPPA INGLESE</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, acqua, aromi (<b>UOVO</b>), aroma naturale, addensante (agar-agar), colorante (estratto di paprica). Può contenere: soia, latte, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA ARACHIDI SALATE</span>
+                    <span class="product-description">- Olio di semi di girasole; - Crema cioccolato bianco: Zucchero, oli e grassi vegetali (colza, palma, shea e burro di cacao), <b>LATTOSIO</b>, siero di <b>LATTE</b> in polvere, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi; - Burro di <b>ARACHIDI</b> 100%; - <b>ARACHIDI</b> 50%, zucchero, sale; - Sale. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA BUENO</span>
+                    <span class="product-description">Zucchero, olio vegetale (colza), <b>LATTE</b> scremato in polvere, <b>NOCCIOLE</b>, <b>LATTE</b> intero in polvere, <b>LATTOSIO</b>, siero di <b>LATTE</b> in polvere, emulsionante (lecitina di <b>SOIA</b>), aroma naturale di vaniglia. Può contenere: mandorle, noci, noci di acagiù, noci di pecan, noci del brasile, pistacchi, noci macadamia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA BUENO CRISP</span>
+                    <span class="product-description">Oli (girasole, palma), zucchero, granella di pane, farina (<b>GRANO</b> TENERO), olio extravergine di oliva, estratto di malto (<b>ORZO</b>), glutine (<b>FRUMENTO</b>), lievito, sale, zucchero), siero di <b>LATTE</b>, <b>NOCCIOLE</b>, cacao magro, <b>LATTE</b> magro disidratato, emulsionanti: lecitina di <b>SOIA</b>, aroma. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA CEREALI</span>
+                    <span class="product-description">- Riso soffiato, orzo soffiato, farro soffiato in proporzioni variabili; - Olio di semi di girasole; - Crema cioccolato Bianco: Zucchero, oli e grassi vegetali (colza, palma, shea e burro di cacao), <b>LATTOSIO</b>, siero di <b>LATTE</b> in polvere, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi; - Crema cioccolato alla nocciola: Zucchero, oli e grassi vegetali (colza e palma), <b>NOCCIOLE</b> 15%, cacao magro in polvere, siero del <b>LATTE</b> in polvere, <b>LATTOSIO</b>, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA CIOCCOLATO BIANCO</span>
+                    <span class="product-description">Zucchero, oli e grassi vegetali (colza, palma, shea e burro di cacao), <b>LATTOSIO</b>, siero di <b>LATTE</b> in polvere, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA CIOCCOLATO FONDENTE</span>
+                    <span class="product-description">Oli vegetali (colza, girasole in proporzione variabile), zucchero, cacao magro in polvere 25%, <b>NOCCIOLE</b> 8%, olio vegetale (palma), <b>LATTE</b> scremato in polvere, grassi vegetali (karitè e cacao), emulsionante: lecitine (<b>SOIA</b>), aroma. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA DELIZIA AL LIMONE</span>
+                    <span class="product-description">Olio vegetale (girasole), zucchero, <b>LATTE</b> magro in polvere, <b>LATTE</b> intero in polvere, siero di <b>LATTE</b> in polvere, limone disidratato in pezzi 4,0%, burro di cacao, emulsionante (lecitina di <b>SOIA</b>), acidificante (acido citrico), aroma naturale di limone, aromi, colorante (luteina). Può contenere: uovo, mandorle, nocciole, noci, noci di acagiù, pistacchi, arachidi, semi di sesamo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA DULCE DE LECHE</span>
+                    <span class="product-description"><b>LATTE</b> condensato zuccherato, sciroppo di glucosio, correttore di acidità (bicarbonato di sodio), addensante (agar-agar), aromi. Può contenere tracce di: nocciole.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA NOCCIOLA</span>
+                    <span class="product-description">Zucchero, oli e grassi vegetali (colza e palma), <b>NOCCIOLE</b> 15%, cacao magro in polvere, siero del <b>LATTE</b> in polvere, <b>LATTOSIO</b>, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA NUTELLA</span>
+                    <span class="product-description">Zucchero, olio di palma, <b>NOCCIOLE</b> (13%), <b>LATTE</b> scremato in polvere (8,7%), cacao magro (7,4%), emulsionanti: lecitine (<b>SOIA</b>), vanillina.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA PAN DI STELLE</span>
+                    <span class="product-description">- Biscotti al cacao (farina di <b>FRUMENTO</b>, zucchero, oli vegetali palma e girasole in proporzione variabile, <b>BURRO</b>, 6% <b>LATTE</b> fresco pastorizzato, 3,6% cacao, 3,5% cioccolato (zucchero, pasta di cacao), 2% granelli di zucchero, 1,7% <b>UOVA</b>, miele, 0,8% <b>NOCCIOLE</b>, amido di <b>FRUMENTO</b>, amido di riso, agenti lievitanti: carbonati di sodio, carbonati di ammonio; sale, aromi naturali, albume d’<b>UOVO</b> in polvere, amido di mais; - Crema cioccolato fondente: Oli vegetali (colza, girasole in proporzione variabile), zucchero, cacao magro in polvere 25%, <b>NOCCIOLE</b> 8%, olio vegetale (palma), <b>LATTE</b> scremato in polvere, grassi vegetali (karitè e cacao), emulsionante: lecitine (<b>SOIA</b>), aroma; - Olio di semi di girasole; - Crema cioccolato alla nocciola: Zucchero, oli e grassi vegetali (colza e palma), <b>NOCCIOLE</b> 15%, cacao magro in polvere, siero del <b>LATTE</b> in polvere, <b>LATTOSIO</b>, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi. Può contenere tracce di: cereali contenenti glutine, frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA PISTACCHIO</span>
+                    <span class="product-description">Olio vegetale (girasole), zucchero, pasta di <b>PISTACCHI</b> 20,0%, <b>LATTE</b> magro in polvere, <b>LATTE</b> intero in polvere, siero di <b>LATTE</b> in polvere, zucchero caramellato, burro di cacao, emulsionante (lecitina di <b>SOIA</b>), colorante (E141), aromi. Può contenere: uovo, mandorle, nocciole, noci, noci di acagiù, arachidi, semi di sesamo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA PROFITTEROLES</span>
+                    <span class="product-description">Oli (girasole), zucchero, <b>NOCCIOLE</b>, cacao, cacao magro, bignè (<b>UOVO</b>, farina (<b>GRANO</b> TENERO), margarina, agenti lievitanti: E450i, E500ii; sale), <b>LATTE</b> magro disidratato, siero di <b>LATTE</b> disidratato, emulsionanti: lecitina di <b>SOIA</b>; aroma, sale. Può contenere tracce di: latte e suoi derivati, uovo, cereali contenenti glutine, frutta a guscio, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA RAFFAELLO</span>
+                    <span class="product-description">- Crema cioccolato bianco: Zucchero, oli e grassi vegetali (colza, palma, shea e burro di cacao), <b>LATTOSIO</b>, siero di <b>LATTE</b> in polvere, <b>LATTE</b> scremato in polvere, emulsionante: lecitine (<b>SOIA</b>), aromi; - Wafer alla vaniglia: olio di cocco, 22,8% farina di <b>FRUMENTO</b>, amido di <b>FRUMENTO</b>, zucchero, destrosio, <b>LATTE</b> scremato in polvere, siero di <b>LATTE</b> in polvere, farina di <b>SOIA</b>, emulsionanti: lecitina di <b>SOIA</b>; 0,16 estratto di vaniglia da bacche Bourbon, sale, agenti lievitanti: carbonato di sodio. - Olio di semi di girasole; - Farina di cocco. Può contenere tracce di: frutta a guscio e senape.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA ROCHER</span>
+                    <span class="product-description">- Crema fondente [(Oli vegetali (colza, girasole in proporzione variabile), zucchero, cacao magro in polvere 25%, <b>NOCCIOLE</b> 8%, olio vegetale (palma), <b>LATTE</b> scremato in polvere, grassi vegetali (karitè e cacao), emulsionante: lecitine (<b>SOIA</b>), aroma.]; - Wafer alla nocciola (olio di cocco, 22,8% farina di <b>FRUMENTO</b>, amido di <b>FRUMENTO</b>, zucchero, destrosio, 5,6% <b>NOCCIOLE</b>, <b>LATTE</b> scremato in polvere, siero del <b>LATTE</b> in polvere, cacao magro, farina di <b>SOIA</b>, emulsionanti: lecitina di <b>SOIA</b>, sale, aromi.); - Olio di semi di girasole; - <b>NOCCIOLE</b>. Può contenere tracce di: frutta a guscio, senape.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA STRACCIATELLA BIANCA</span>
+                    <span class="product-description">Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, emulsionante: lecitine (<b>SOIA</b>), aroma, vanillina. Può contenere tracce di: latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA STRACCIATELLA FONDENTE</span>
+                    <span class="product-description">Zucchero, grasso vegetale totalmente idrogenato (noce di cocco, palmisti) in proporzione variabile, olio di semi di girasole, cacao magro in polvere (20,5%), emulsionante: lecitine (<b>SOIA</b>), aroma, vanillina. Può contenere tracce di: mandorle, nocciole, latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CREMA ZABAIONE</span>
+                    <span class="product-description">Vino marsala, zucchero, acqua, tuorlo d’<b>UOVO</b> in polvere, alcool, albume d’<b>UOVO</b> in polvere, coloranti (caramello (E150a), caroteni, curcumina), aromi. Può contenere tracce di: soia, latte, noci, pistacchi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="icons">
+                    <img src="Foto/Menu/vo.png" alt="Vegan">
+                </div>
+                <div class="product-info">
+                    <span class="product-title">CREMA NUTELLA VEGANA</span>
+                    <span class="product-description">Zucchero, olio vegetale di girasole, <b>NOCCIOLE</b> tostate e raffinate (10%), cacao magro in polvere (8,3%), emulsionante: lecitina di girasole, aromi. Può contenere tracce di: frutta a guscio, soia, latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">GRANELLA AMARETTO</span>
+                    <span class="product-description">Zucchero, <b>MANDORLE</b> di albicocca (20%), albume d’<b>UOVO</b> (11%), agenti lievitanti (E500ii. E503ii), aromi. Può contenere tracce di: glutine, latte, arachidi, frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">ARACHIDI</span>
+                    <span class="product-description"><b>ARACHIDI</b>. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">ARACHIDI SALATE</span>
+                    <span class="product-description"><b>ARACHIDI</b> salate 94%, olio di semi di girasole, sale. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">ARACHIDI PRALINATE</span>
+                    <span class="product-description"><b>ARACHIDI</b> 50%, zucchero, sale. Può contenere tracce di: semi di sesamo, frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">BREZEL</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b>, olio vegetale (colza), sale, sale marino (1,2%), correttore d’acidità: idrossido di sodio; lievito, estratto di malto d’<b>ORZO</b>, agente lievitante: carbonato acido di sodio. Può contenere tracce di: semi di sesamo, latte e uova.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CEREAL COOKIE</span>
+                    <span class="product-description">Farina (farina di <b>FRUMENTO</b> integrale, farina di <b>FRUMENTO</b>), semolino di mais, zucchero, sciroppo di glucosio, 1% cacao magro, olio di colza, sale da cucina, melassa, agente lievitante: carbonati di sodio; aromi naturali. Può contenere tracce di: altri cereali contenenti glutine, frutta a guscio, arachidi, soia e latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CEREALI AI TRE CIOCCOLATI</span>
+                    <span class="product-description">Cioccolato al <b>LATTE</b> 74% (zucchero, burro di cacao, <b>LATTE</b> in polvere, massa di cacao, siero di <b>LATTE</b> in polvere, emulsionante: lecitina di <b>SOIA</b>, aroma: vanillina). Cacao min.28%); cioccolato bianco 74% (zucchero, burro di cacao, <b>LATTE</b> intero in polvere, siero di <b>LATTE</b> in polvere, emulsionante: lecitina di <b>SOIA</b>, aroma: vanillina); cioccolato fondente 74% (zucchero, massa di cacao, burro di cacao, emulsionante: lecitina di soia, aroma: vanillina). Cacao min.52%); <b>CEREALI</b> 25% (farina di mais, farina di <b>FRUMENTO</b>, farina di riso, zucchero, estratto di malto d'<b>ORZO</b>, sale); agenti di rivestimento: gomma arabica, gommalacca. Può contenere tracce di: frutta a guscio, arachidi, senape e loro derivati.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CEREALI AL CIOCCOLATO BIANCO</span>
+                    <span class="product-description">Cioccolato bianco di copertura e zucchero: (zucchero, burro di cacao, <b>LATTE</b> intero in polvere, pasta di cacao), emulsionante: lecitina di <b>SOIA</b> (E322), estruso: farina di riso, zucchero, estratto di malto D’<b>ORZO</b>, agente lievitante: carbonato acido di ammonio (E503ii), sale. Può contenere tracce di: uova e frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CEREALI AL CIOCCOLATO FONDENTE</span>
+                    <span class="product-description">Cioccolato fondente di copertura e zucchero: (zucchero, pasta di cacao, burro di cacao, emulsionante: lecitina di <b>SOIA</b> (E322)). Estruso: farina di riso, zucchero, estratto di malto D'<b>ORZO</b>, agente lievitante: ammonio bicarbonato (E503ii), sale. Può contenere tracce di: uova e frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CEREALI AL CIOCCOLATO AL LATTE</span>
+                    <span class="product-description">Cioccolato al <b>LATTE</b> 84,0% (zucchero, burro di cacao, <b>LATTE</b> intero in polvere, pasta di cacao, siero di latte in polvere, emulsionante: lecitina di <b>SOIA</b>, aroma naturale di vaniglia), cereali croccanti (farina di <b>FRUMENTO</b>, zucchero, farina di malto di <b>FRUMENTO</b>, amido (<b>FRUMENTO</b>), agenti lievitanti: E500ii, sale, burro di cacao, aroma naturale di vaniglia), sciroppo di glucosio, zucchero, agente di rivestimento: E414. Può contenere tracce di: uova e frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CHEERIOS ALLA FRUTTA</span>
+                    <span class="product-description">Farine di cereali (78%) (<b>FRUMENTO</b>, <b>AVENA</b>, mais), zucchero, sciroppo di glucosio, sale, frutta e verdura concentrate (carota, ciliegia, ravanello), aroma naturale di agrumi con altri aromi naturali, colorante (caroteni). Può contenere: glutine da altri cereali, soia.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CHEERIOS AL MIELE</span>
+                    <span class="product-description">Farina (47%* <b>FRUMENTO</b> integrale, 5%* <b>FRUMENTO</b>, 4%* <b>AVENA</b> integrale, <b>ORZO</b> integrale, riso integrale), 29% semolino di mais integrale, zucchero, 4% miele di fiori, sciroppo di glucosio, maltodestrina, sciroppo di zucchero bruno invertito, sale da cucina, aroma naturale. *Riferito al prodotto finito. Può contenere tracce di: altri cereali contenenti glutine (segale), frutta a guscio (mandorle, nocciole, noci, noci di acagiù, noci di pecan, noci del Brasile, pistacchi, noci macadamia), arachidi, soia e latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CINNAMON CHURROS</span>
+                    <span class="product-description">Farina (54% <b>FRUMENTO</b> integrale, riso), zucchero, olio di semi di girasole, sale, sciroppo di glucosio in polvere, agente lievitante: carbonato di calcio; 0,2% cannella, emulsionante: lecitine; antiossidante: estratto ricco di tocoferolo. Può contenere tracce di: altri cereali contenenti glutine, latte, frutta a guscio e arachidi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CODETTE</span>
+                    <span class="product-description">Zucchero, farina di <b>FRUMENTO</b>, maltodestrina, cacao magro, rivestimento: E903, aromi. Coloranti: E100, E120, E133, E171, E150d.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CONTROVERSI</span>
+                    <span class="product-description">Farina (26% <b>FRUMENTO</b> integrale, 16% <b>FRUMENTO</b>) preparazione al gusto di Vaniglia (zucchero, olio di palma, maltodestrina, farina di riso, olio di colza, <b>LATTE</b> scremato in polvere, agente di carica: carbonato di calcio, aroma naturale, emulsionante: lecitine; antiossidante: alfa-tocoferolo), zucchero, 5% cacao magro (cacao magro correttori di acidità: idrossido di sodio, carbonati di potassio), 4% semola di mais integrale, sale. Può contenere tracce di: altri cereali contenenti glutine, frutta a guscio, soia e arachidi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">CORN FLAKES</span>
+                    <span class="product-description">Mais, zucchero, estratto di malto d'<b>ORZO</b>, sale da cucina, emulsionante: mono- e digliceridi degli acidi grassi. Per ottenere 100 g di prodotto vengono utilizzati 92 g di mais. Può contenere tracce di: altri cereali contenenti glutine, frutta a guscio, arachidi, soia e latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">DIAVOLINI</span>
+                    <span class="product-description">Zucchero, amido, sciroppo di glucosio colorato con E104, E110, E124, E132, E151.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">FARINA DI COCCO</span>
+                    <span class="product-description">Farina di cocco.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">GOCCE DI CIOCCOLATO FONDENTE</span>
+                    <span class="product-description">Zucchero, pasta al Cacao, burro di cacao, emulsionante (E322 lecitina di girasole), aroma naturale e vaniglia. Cacao: 46% minimo. Senza glutine. Può contenere: latte.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MANDORLE</span>
+                    <span class="product-description"><b>MANDORLE</b>. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MANDORLE PRALINATE</span>
+                    <span class="product-description"><b>MANDORLE</b> 50%, zucchero. Può contenere tracce di: semi di sesamo, frutta a guscio e arachidi.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MARSHMALLOW</span>
+                    <span class="product-description">Sciroppo di glucosio, zucchero, acqua, destrosio, gelatina alimentare (suino), agente umidificante: sorbitolo; aroma, coloranti rosso di barbabietola, curcumina.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MERINGHE</span>
+                    <span class="product-description">Zucchero, albume d'<b>UOVO</b>, amido di riso. Può contenere tracce di: frutta a guscio.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MINILENTI AL CIOCCOLATO</span>
+                    <span class="product-description">Cioccolato al <b>LATTE</b> (50%) (zucchero, burro di cacao, <b>LATTE</b> intero in polvere, massa di cacao, siero di <b>LATTE</b> in polvere, emulsionante lecitina di <b>SOIA</b>, aromi: vanillina. Cacao min. 28%); zucchero; amido di riso e di mais; agenti gelificanti: maltodestrina, gomma arabica; coloranti: curcumina - riboflavine - carminio - blu brillante FCF - caroteni - estratto di paprika - carbonato di calcio; agente di rivestimento: cera carnauba; aroma vanillina. Può contenere tracce di: frutta a guscio, arachidi e loro derivati.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MORBIDOSO</span>
+                    <span class="product-description">Farina di <b>FRUMENTO</b>, zucchero, <b>UOVA</b>, olio di colza, umidificanti: E420, E422, amido di <b>FRUMENTO</b>, amido di <b>FRUMENTO</b> pregelatinizzato, siero di <b>LATTE</b> in polvere, emulsionante: E471, E475, agenti lievitanti: E450, E500, E516, cacao magro in polvere 0,7%, acidificante: E330, aromi, sale, conservante: E202. Può contenere tracce di: frutta a guscio, soia e senape.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MUESLI AVENA E CIOCCOLATO</span>
+                    <span class="product-description">59% fiocchi di <b>AVENA</b> integrali, pezzetti di cioccolato al <b>LATTE</b> [zucchero, massa di cacao, <b>LATTE</b> intero in polvere, burro di cacao, emulsionante: lecitine (girasole)], pezzetti di cioccolato fondente [massa di cacao, zucchero, burro di cacao, emulsionante: lecitine (girasole)], estruso di riso e cacao (farina di riso, zucchero, 4% cacao magro in polvere, cioccolato al latte (zucchero, burro di cacao, <b>LATTE</b> intero in polvere, massa di cacao, emulsionante: lecitine (girasole)), sciroppo di glucosio, estratto di <b>MALTO</b> d'orzo, olio di semi di girasole, sale, aroma naturale di cacao], muesli croccante [fiocchi di <b>AVENA</b> integrali, zucchero, olio di palma, fiocchi di <b>FRUMENTO</b> integrali, estruso di riso (farina di riso, zucchero, glutine di <b>FRUMENTO</b>, farina di cereali maltati (<b>ORZO</b>, <b>FRUMENTO</b>) sale), cocco grattugiato, preparato in polvere per bevanda al cacao (zucchero, 25% cacao magro in polvere, destrosio, sale, aroma naturale), sciroppo di glucosio-fruttosio, aroma naturale], 2% <b>MANDORLE</b> confettate (zucchero, mandorle, sciroppo di zucchero invertito, sciroppo di zucchero caramellato). Può contenere tracce di: arachidi, altra frutta a guscio, sola e semi di sesamo.</span>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-info">
+                    <span class="product-title">MUESLI CIOCCOLATO NOCCIOLE E MANDORLE</span>
+                    <span class="product-description">48% fiocchi di <b>AVENA</b> integrale, zucchero, 11% pezzetti di cioccolato [pasta di cacao, zucchero, <b>BURRO</b> chiarificato (CH: <b>LATTE</b>), burro di cacao, polvere di cacao magro, emulsionante: lecitine (di girasole); estruso di cereali [farina di <b>FRUMENTO</b>, zucchero, 4% cacao in polvere magro (NL), estratto di <b>MALTO</b> d’<b>ORZO</b>, sale]; miele, 2% <b>NOCCIOLE</b>, olio di colza, 2% <b>MANDORLE</b>, 2% semi di girasole, sciroppo di glucosio, <b>FRUMENTO</b>, farina di cocco, aroma naturale di vaniglia. Può contenere tracce di: altra frutta a guscio, arachidi, soia e latte.</span>
+                </div>
+            </div>
+        </div>
+
+
+</div>
+
+</div>
+<div id="INGLESE" class="content">
+    <div class="menu-title">
+        ENGLISH MENU
+    </div>
+    <div class="grid-container">
+        <div class="x-container">
+            <h1>Frozen Yogurt <div class="pinkhr"></h1>
+            <p>Frozen Yogurt made with fresh Mila Sudtirol Yogurt without the addition of milk or cream, great for lactose intolerant people.</p>
+            <ul class="x-list">
+                <li><span>YO SOLO</span><span>€2,00</span></li>
+                <li><span>YO SMALL</span><span>€4,00</span></li>
+                <li><span>YO MEDIUM</span><span>€5,00</span></li>
+                <li><span>YO LARGE</span><span>€6,00</span></li>
+                <li><span>YO PARADISE</span><span>€11,50</span></li>
+                <li><span>YO INFINITY</span><span>€21,50</span></li>
+            </ul>
+            <footer>
+                <p>Additional toppings compared to those already included start from + €0.50.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>Toppings<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <span>FRESH FRUIT</span>
+                </li>
+                <li>
+                    <span>CREAMS
+                        <img src="Foto/Menu/Creme1.png" />
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Salted peanuts</td>
+                            <td>Bueno</td>
+                            <td>Bueno Crisp</td>
+                        </tr>
+                        <tr>
+                            <td>Cereals</td>
+                            <td>White chocolate</td>
+                            <td>Dark chocolate</td>
+                        </tr>
+                        <tr>
+                            <td>Lemon delight</td>
+                            <td>Toffee</td>
+                            <td>Hazelnut</td>
+                        </tr>
+                        <tr>
+                            <td>Pan di Stelle</td>
+                            <td>Pistachio</td>
+                            <td>Profiterole</td>
+                        </tr>
+                        <tr>
+                            <td>Raffaello</td>
+                            <td>Rocher</td>
+                            <td>White stracciatella</td>
+                        </tr>
+                        <tr>
+                            <td>Dark stracciatella</td>
+                            <td>Zabaglione</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <span>SAUCES
+                        <img src="Foto/Menu/Creme2.png" />
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Apricot</td>
+                            <td>Black cherry</td>
+                            <td>Pineapple</td>
+                        </tr>
+                        <tr>
+                            <td>Watermelon</td>
+                            <td>Banana</td>
+                            <td>Coffee</td>
+                        </tr>
+                        <tr>
+                            <td>Caramel</td>
+                            <td>Caramelized figs</td>
+                            <td>Strawberry</td>
+                        </tr>
+                        <tr>
+                            <td>Mixed berries</td>
+                            <td>Raspberry</td>
+                            <td>Lime</td>
+                        </tr>
+                        <tr>
+                            <td>Licorice</td>
+                            <td>Mango</td>
+                            <td>Passion fruit</td>
+                        </tr>
+                        <tr>
+                            <td>Pomegranate</td>
+                            <td>Melon</td>
+                            <td>Blueberry</td>
+                        </tr>
+                        <tr>
+                            <td>Peach</td>
+                            <td>Smurf</td>
+                            <td>Ginger</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>CRUNCHIES<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <span>
+                        <img src="Foto/Menu/Granelle1.png" />
+                    </span>
+                    <table>
+                        <tr>
+                            <td>Amaretto</td>
+                            <td>Praline peanuts</td>
+                            <td>Pretzel</td>
+                        </tr>
+                        <tr>
+                            <td>Dark chocolate cereals</td>
+                            <td>Milk chocolate cereals</td>
+                            <td>Cereal cookie</td>
+                        </tr>
+                        <tr>
+                            <td>Triple chocolate cereals</td>
+                            <td>Fruit Cheerios</td>
+                            <td>White chocolate cereals</td>
+                        </tr>
+                        <tr>
+                            <td>Confetti</td>
+                            <td>Sprinkles</td>
+                            <td>Honey Cheerios</td>
+                        </tr>
+                        <tr>
+                            <td>Nonpareils</td>
+                            <td>Coconut flour</td>
+                            <td>Corn flakes</td>
+                        </tr>
+                        <tr>
+                            <td>Almonds</td>
+                            <td>Praline almonds</td>
+                            <td>Chocolate chips</td>
+                        </tr>
+                        <tr>
+                            <td>Meringues</td>
+                            <td>Mini chocolate drops</td>
+                            <td>Marshmallow</td>
+                        </tr>
+                        <tr>
+                            <td>Hazelnuts</td>
+                            <td>Praline hazelnuts</td>
+                            <td>Soft candies</td>
+                        </tr>
+                        <tr>
+                            <td>Chocolate, almond, and hazelnut muesli</td>
+                            <td>Dried fruit muesli</td>
+                            <td>Oat and chocolate muesli</td>
+                        </tr>
+                        <tr>
+                            <td>Egyptian pearls</td>
+                            <td>Chocolate puffed rice</td>
+                            <td>Oreo</td>
+                        </tr>
+                        <tr>
+                            <td>Organic cocoa and ginger oat sticks</td>
+                            <td>Organic puffed spelt</td>
+                            <td>Wafers</td>
+                        </tr>
+                        <tr>
+                            <td>Organic puffed rice</td>
+                            <td>Organic quinoa</td>
+                            <td>Organic puffed barley</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>Frozen Yogurt Tubs <div class="pinkhr"></h1>
+            <p>You can also request Frozen Yogurt or other flavors in convenient take-away tubs.</p>
+            <ul class="x-list">
+                <li><span>• 500g tub</span><span>€12,50</span></li>
+                <li><span>• 750g tub</span><span>€18,50</span></li>
+                <li><span>• 1000g tub</span><span>€25,00</span></li>
+            </ul>
+            <footer>
+                <p>Add the toppings you prefer starting from + € 1,00.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>FRAPPE<div class="pinkhr"></h1>
+            <p>The tasty Frappe is born from the combination of Frozen Yogurt, milk, and one of the sauces, topped with a dollop of whipped cream!</p>
+            <ul class="x-list">
+                <li><span>• YO SMALL</span><span>€5,00</span></li>
+                <li><span>• YO LARGE</span><span>€6,00</span></li>
+            </ul>
+            <footer>
+                <p>Toppings starting from + € 0,50 each.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>YO SHAKE<div class="pinkhr"></h1>
+            <p>The fresh and thirst-quenching Yo Shake is created by combining Frozen Yogurt, granita base, and a sauce.</p>
+            <ul class="x-list">
+                <li><span>YO SMALL</span><span>€4,00</span></li>
+                <li><span>YO MEDIUM</span><span>€5,00</span></li>
+                <li><span>YO LARGE</span><span>€6,00</span></li>
+                <li><span>YO PARADISE</span><span>€11,50</span></li>
+                <li><span>YO INFINITY</span><span>€21,50</span></li>
+            </ul>
+            <footer>
+                <p>Toppings starting from + € 0,50 each.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>BUBBLE TEA<div class="pinkhr"></h1>
+            <p>Black tea without milk, a syrup to flavor the tea, and your choice of one scoop of Boba or Jelly.</p>
+            <ul class="x-list">
+                <li><span>YO SMALL</span><span>€3,50</span></li>
+                <li><span>YO LARGE</span><span>€4,50</span></li>
+            </ul>
+            <footer>
+                <p>An additional scoop + € 0,50.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>GRANITAS<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <table id="width100">
+                        <tr>
+                            <td>CLASSIC</td>
+                            <td>Black cherry</td>
+                            <td>Orange</td>
+                            <td>Coffee</td>
+                        </tr>
+                        <tr>
+                            <td>Small €3,00</td>
+                            <td>Coconut</td>
+                            <td>Coca Cola</td>
+                            <td>Strawberry</td>
+                        </tr>
+                        <tr>
+                            <td>Large € 4,00</td>
+                            <td>Lemon</td>
+                            <td>Mint</td>
+                            <td>Almond syrup</td>
+                        </tr>
+                    </table>
+                </li>
+                <footer>
+                    <p>Fresh fruit pieces can be added + € 1,00.</p>
+                </footer>
+                <li>
+                    <table id="width100">
+                        <tr>
+                            <td>FRUIT PULP</td>
+                            <td>Apricot</td>
+                            <td>Pineapple</td>
+                            <td>Banana</td>
+                        </tr>
+                        <tr>
+                            <td>Small €3,00</td>
+                            <td>Strawberry</td>
+                            <td>Mixed berries</td>
+                            <td>Raspberry</td>
+                        </tr>
+                        <tr>
+                            <td>Large € 4,00</td>
+                            <td>Lime</td>
+                            <td>Mango</td>
+                            <td>Passion fruit</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Melon</td>
+                            <td>Blueberry</td>
+                            <td>Peach</td>
+                        </tr>
+                    </table>
+                </li>
+                <footer>
+                    <p>Fresh fruit pieces can be added</p>
+                </footer>
+                <li>
+                    <table id="width100">
+                        <tr>
+                            <td>DELUXE</td>
+                            <td>Caramel</td>
+                            <td>Elderflower</td>
+                            <td>Lavender</td>
+                        </tr>
+                        <tr>
+                            <td>Small €3,00</td>
+                            <td>Lichee</td>
+                            <td>Lemon and Ginger</td>
+                            <td>Licorice</td>
+                        </tr>
+                        <tr>
+                            <td>Large € 4,00</td>
+                            <td>Pomegranate</td>
+                            <td>Pink grapefruit</td>
+                            <td>Tamarind</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Blue Tropical</td>
+                            <td>Violet</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </li>
+                <footer>
+                    <p>Fresh fruit pieces can be added + € 1,00.</p>
+                </footer>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>FRUTTIAMO € 5,00 <div class="pinkhr"></h1>
+            <footer>
+                <p>100% fruit, vegetables, and spices to be consumed as a drink or granita!</p>
+                <p>8 different flavor combinations, all to try.</p>
+            </footer>
+        </div>
+
+        <div class="x-container">
+            <h1>CAKES AND READY-MADE PRODUCTS <div class="pinkhr"></h1>
+            <p>Handmade, also on request, with Frozen Yogurt and your favorite toppings.</p>
+            <ul class="x-list">
+                <li><span>Yogurt Cakes starting from (per Kg)</span><span>€25,00</span></li>
+                <li><span>Chiara Jane / Du Mozzichi Cup</span><span>€1,50</span></li>
+                <li><span>Ice Cream Stick / Ice Cream Sandwich</span><span>€3,00</span></li>
+                <li><span>Core de Roma</span><span>€3,50</span></li>
+                <li><span>Cheesecake</span><span>€3,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>CREPES<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>Nutella on paper</span><span>€4,50</span></li>
+                <li><span>Nutella on plate</span><span>€5,00</span></li>
+                <li><span>With 1 Cream / jam + 1 topping</span><span>€5,50</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Whipped cream</span><span>€0,50</span></li>
+                <li><span>Pistachio cream – Fresh fruit – Maple syrup</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>PANCAKES<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>2 DISCS with 1 cream / jam + 1 topping</span><span>€5,50</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Whipped cream</span><span>€0,50</span></li>
+                <li><span>Pistachio cream – Fresh fruit – Maple syrup</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>WAFFLE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>with 1 cream / jam + 1 topping</span><span>€6,00</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Whipped cream</span><span>€0,50</span></li>
+                <li><span>Pistachio cream – Fresh fruit – Maple syrup</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>MUG CAKE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>with Frozen Yogurt + 1 cream / sauce + 1 topping</span><span>€5,00</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Pistachio cream – Fresh fruit – Maple syrup</span><span>€1,00</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>CORNETTO<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>with Frozen Yogurt + 1 cream / sauce + 1 topping</span><span>€4,50</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Pistachio cream – Fresh fruit – Maple syrup</span><span>€1,00</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>VEGAN<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>CREPES with jam + 1 topping</span><span>€6,00</span></li>
+                <li><span>PANCAKES with jam + 1 topping</span><span>€6,50</span></li>
+                <li><span>WAFFLE with jam + 1 topping</span><span>€7,00</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>sauce / topping</span><span>€0,50</span></li>
+                <li><span>Vegan Nutella Cream – Fresh Fruit – Maple Syrup</span><span>€1,00</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+            </ul>
+        </div>
+
+        <div class="x-container">
+            <h1>HOT CHOCOLATE<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>White Chocolate</span><span>€3,50</span></li>
+                <li><span>Milk Chocolate</span><span>€3,50</span></li>
+                <li><span>Dark Chocolate</span><span>€3,50</span></li>
+                <li style="background: #f2f200;">WITH ADDITION OF:</li>
+                <li><span>Topping</span><span>€0,50</span></li>
+                <li><span>Frozen Yogurt</span><span>€1,50</span></li>
+                <li><span>Mug Cake</span><span>€3,00</span></li>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>SAVORY CREPES<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li>
+                    <table id="width100">
+                        <tr>
+                            <td>Cold Cuts</td>
+                            <td>Cheeses</td>
+                            <td>Vegetables</td>
+                            <td>Sauces</td>
+                        </tr>
+                        <tr>
+                            <td>Prosciutto crudo</td>
+                            <td>Emmental</td>
+                            <td>Iceberg lettuce</td>
+                            <td>Mayonnaise</td>
+                        </tr>
+                        <tr>
+                            <td>Cooked ham</td>
+                            <td>Smoked provolone</td>
+                            <td>Grilled zucchini*</td>
+                            <td>Ketchup</td>
+                        </tr>
+                        <tr>
+                            <td>Turkey breast</td>
+                            <td>Cheddar</td>
+                            <td>Grilled eggplant*</td>
+                            <td>Barbecue</td>
+                        </tr>
+                        <tr>
+                            <td>Bresaola</td>
+                            <td></td>
+                            <td></td>
+                            <td>Pink sauce</td>
+                        </tr>
+                        <tr>
+                            <td>Salami</td>
+                            <td></td>
+                            <td></td>
+                            <td>Mustard</td>
+                        </tr>
+                        <tr>
+                            <td>Speck</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Mortadella</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </li>
+                <footer>
+                    <p>*Frozen product</p>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>FROZEN YOGURT / YO SHAKE PROTEIN<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>YO SMALL (3 NO HEALTHY toppings)</span><span>€4,00</span></li>
+                <li><span>YO MEDIUM (4 NO HEALTHY toppings)</span><span>€5,00</span></li>
+                <li><span>YO LARGE (5 NO HEALTHY toppings)</span><span>€6,00</span></li>
+                <li><span>YO PARADISE (6 NO HEALTHY toppings)</span><span>€11,50</span></li>
+                <li><span>YO INFINITY (7 NO HEALTHY toppings)</span><span>€21,50</span></li>
+                <footer>
+                    <p>With the addition of:</p>
+                        <li>VB Whey 104 (20g) - €2,50</li>
+                        <li>Whey Protein (20g) - €2,00</li>
+                        <li>Protein creams - €1,50</li>
+                        <li>Peanut butter - €1,00</li>
+                        <li>0-calorie sauces - €1,00</li>
+                        <li>Sugar-free jams - €1,50</li>
+                        <li>Protein Oreo - €1,50</li>
+                        <li>Protein muesli - €1,00</li>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>HOT PROTEIN DELIGHTS<div class="pinkhr"></h1>
+            <ul class="x-list">
+                <li><span>SWEET CREPES with 1 NO HEALTHY cream + 1 topping</span><span>€5,50</span></li>
+                <li><span>PANCAKE 1 DISC with 1 NO HEALTHY cream</span><span>€3,00</span></li>
+                <li><span>MUG CAKE with Frozen Yogurt + 1 NO HEALTHY cream + 1 topping</span><span>€6,50</span></li>
+                <li><span>SAVORY CREPES with salad</span><span>€5,50</span></li>
+                <footer>
+                    <p>With the addition of:</p>
+                        <li>Natural 0 Sauce - €1,50</li>
+                        <li>Turkey (70g) - €2,00</li>
+                        <li>Bresaola (50g) - €2,50</li>
+                </footer>
+            </ul>
+        </div>
+        
+        <div class="x-container">
+            <h1>BOLERO in 500ml bottle<div class="pinkhr"></h1>
+            <p>Price: €1,50 each</p>
+            <p>SUGAR-FREE, FAT-FREE, GLUTEN-FREE, PRESERVATIVE-FREE, RICH IN VITAMIN C</p>
+            <table id="width1002">
+                <tr>
+                    <td>1. Acerola</td>
+                    <td>21. Kiwi</td>
+                    <td>41. Plum</td>
+                </tr>
+                <tr>
+                    <td>2. Pineapple</td>
+                    <td>22. Raspberry</td>
+                    <td>42. Black currant</td>
+                </tr>
+                <tr>
+                    <td>3. Watermelon</td>
+                    <td>23. Lime</td>
+                    <td>43. Rose</td>
+                </tr>
+                <tr>
+                    <td>4. Orange</td>
+                    <td>24. Lychee</td>
+                    <td>44. Tamarind</td>
+                </tr>
+                <tr>
+                    <td>5. Blood orange</td>
+                    <td>25. Lemon</td>
+                    <td>45. Passion fruit tea</td>
+                </tr>
+                <tr>
+                    <td>6. Acai berries</td>
+                    <td>26. Lemon and Lime</td>
+                    <td>46. Lemon tea</td>
+                </tr>
+                <tr>
+                    <td>7. Goji berries</td>
+                    <td>27. Mandarin</td>
+                    <td>47. Peach tea</td>
+                </tr>
+                <tr>
+                    <td>8. Banana</td>
+                    <td>28. Almond</td>
+                    <td>48. White grape</td>
+                </tr>
+                <tr>
+                    <td>9. Banana and strawberry</td>
+                    <td>29. Mango</td>
+                    <td>49. Red grape</td>
+                </tr>
+                <tr>
+                    <td>10. Cherry</td>
+                    <td>30. Green apple</td>
+                    <td>50. Ginger</td>
+                </tr>
+                <tr>
+                    <td>11. Cherry and cola</td>
+                    <td>31. Pomegranate</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12. Coconut</td>
+                    <td>32. Mint</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>13. Cola</td>
+                    <td>33. Melon and Honey</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>14. Exotic</td>
+                    <td>34. Blueberry</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>15. Elderflower</td>
+                    <td>35. Cranberry</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>16. Mixed berries</td>
+                    <td>36. Blackberry</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17. Dragon fruit</td>
+                    <td>37. Multivitamin</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>18. Passion fruit</td>
+                    <td>38. Papaya</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>19. Guarana</td>
+                    <td>39. Pear</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>20. Soursop</td>
+                    <td>40. Yellow grapefruit</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="x-container">
+            <h1>WELLNESS<div class="pinkhr"></h1>
+            <p>Price: €4,00 each</p>
+            <table id="width1002">
+                <tr>
+                    <th>#</th>
+                    <th>Blend</th>
+                    <th>Ingredients</th>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>Vitality:</td>
+                    <td>Honeybush, mint, verbena, cinnamon, licorice root, lemongrass, marigold.</td>
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>Well-being:</td>
+                    <td>Green honeybush, green tea, spearmint, lemon myrtle, lemongrass, lemon balm, licorice root, verbena, aloe vera extract, spirulina algae, ginkgo leaves.</td>
+                </tr>
+                <tr>
+                    <td>55</td>
+                    <td>Serenity:</td>
+                    <td>Rooibos, lemon balm, honeybush, anise, cinnamon, licorice root, hops, sweet blackberry leaves, cardamom, lotus flowers.</td>
+                </tr>
+                <tr>
+                    <td>56</td>
+                    <td>Relax:</td>
+                    <td>Lemon balm, chamomile, linden flowers, peppermint, sage, verbena.</td>
+                </tr>
+                <tr>
+                    <td>57</td>
+                    <td>Digestive:</td>
+                    <td>Rooibos, anise, fennel, chamomile, peppermint, blackberry leaves, licorice.</td>
+                </tr>
+                <tr>
+                    <td>58</td>
+                    <td>Purity:</td>
+                    <td>Nettle, spearmint, rose hips, green tea, rose petals.</td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>Balance:</td>
+                    <td>Lemongrass, apple, green tea, orange peel, marigold, ginger, coriander, cardamom, cinnamon.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>document.querySelectorAll('.expandable').forEach(item => {
+    item.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const hiddenList = item.querySelector('.hidden');
+        hiddenList.style.display = hiddenList.style.display === 'none' || hiddenList.style.display === '' ? 'block' : 'none';
+    });
+});
+</script>
+</body>
+</html>
